@@ -7,8 +7,11 @@
 //
 
 #import "TestViewController.h"
+#import "LRLAVPlayerView.h"
 
-@interface TestViewController ()
+@interface TestViewController ()<LRLAVPlayDelegate>
+@property (nonatomic, strong) LRLAVPlayerView * avplayerView;
+
 
 @end
 
@@ -16,22 +19,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self createAVPlayerView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - 创建用于播放的View
+-(void)createAVPlayerView{
+    self.avplayerView = [LRLAVPlayerView avplayerViewWithVideoUrlStr:@"http://f01.v1.cn/group2/M00/01/62/ChQB0FWBQ3SAU8dNJsBOwWrZwRc350-m.mp4" andInitialHeight:200.0 andSuperView:self.view];
+    self.avplayerView.delegate = self;
+    [self.view addSubview:self.avplayerView];
+    __weak TestViewController * weakSelf = self;
+    [self.avplayerView setPositionWithPortraitBlock:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.view).with.offset(60);
+        make.left.equalTo(weakSelf.view);
+        make.right.equalTo(weakSelf.view);
+        make.height.equalTo(@(*(weakSelf.avplayerView->_videoHeight)));
+    } andLandscapeBlock:^(MASConstraintMaker *make) {
+        make.width.equalTo(@(SCREEN_HEIGHT));
+        make.height.equalTo(@(SCREEN_WIDTH));
+        make.center.equalTo(weakSelf.view);
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)destoryButtonClicked:(id)sender {
+    [self.avplayerView destoryAVPlayer];
 }
-*/
+- (IBAction)playButtonClicked:(id)sender {
+    [self.avplayerView replay];
+}
 
+-(void)dealloc{
+    NSLog(@"test controller dealloc");
+    [self.avplayerView destoryAVPlayer];
+    self.avplayerView = nil;
+}
 @end

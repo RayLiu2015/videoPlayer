@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "BaseNavViewController.h"
+#import "LRLAVPlayerController.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +18,21 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    //设置状态条的颜色为白色
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
+    //由于开启了旋转屏, 再一进入程序的时候
+    [application setStatusBarOrientation:UIInterfaceOrientationPortrait];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    LRLAVPlayerController * av = [[LRLAVPlayerController alloc] init];
+    BaseNavViewController * nav = [[BaseNavViewController alloc] initWithRootViewController:av];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    return self.window.rootViewController.supportedInterfaceOrientations;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

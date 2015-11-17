@@ -6,13 +6,13 @@
 //
 //
 
-#import "BaseViewController.h"
+#import "BaseNavViewController.h"
 
-@interface BaseViewController ()
+@interface BaseNavViewController ()
 
 @end
 
-@implementation BaseViewController
+@implementation BaseNavViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

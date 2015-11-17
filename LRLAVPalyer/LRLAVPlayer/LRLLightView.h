@@ -13,4 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIView *lightBackView;
 
 @property (nonatomic, strong) NSMutableArray * lightViewArr;
+
+-(void)changeLightViewWithValue:(float)lightValue;
+
+//-(void)hideTheLightViewWithHidden:(BOOL)hidden;
+
 @end
