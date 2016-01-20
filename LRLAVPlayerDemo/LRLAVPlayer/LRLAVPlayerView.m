@@ -6,9 +6,12 @@
 //
 //
 
-#import "LRLAVPlayerView.h"
+#import <AVKit/AVKit.h>
 
-@interface LRLAVPlayerView ()
+#import "LRLAVPlayerView.h"
+#import "LRLAVPlayerTool.h"
+
+@interface LRLAVPlayerView ()<UIGestureRecognizerDelegate, AVPictureInPictureControllerDelegate>
 {
     //用来控制上下菜单view隐藏的timer
     NSTimer * _hiddenTimer;
@@ -43,6 +46,11 @@
     //判断是否为第一次布局
     BOOL _isFisrtConfig;
 }
+
+/**
+ * @b 画中画控制器
+ */
+@property (nonatomic, strong) AVPictureInPictureController *pipC;
 
 /**
  *  @b 右下角的那个控制全屏的button
@@ -223,8 +231,11 @@
     self.videoSlider.maximumValue = self.totalSeconds;
     self.actIndicator.hidden = YES;
     [self.actIndicator stopAnimating];
-    self.totalTimeLabel.text = [self calculateTimeWithTimeFormatter:self.totalSeconds];
+    self.totalTimeLabel.text = calculateTimeWithTimeFormatter(self.totalSeconds);
     _hiddenTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(controlViewHidden) userInfo:nil repeats:NO];
+    
+    self.pipC = [[AVPictureInPictureController alloc] initWithPlayerLayer:(AVPlayerLayer *)self.layer];
+    self.pipC.delegate = self;
 }
 
 #pragma mark - 创建控制声音的控制器, 通过self.volumeSlider来控制声音
@@ -307,12 +318,28 @@
 }
 
 -(void)addGesture{
+//    UITapGestureRecognizer * onceTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAct:)];
+//    onceTap.numberOfTapsRequired = 1;
+//    onceTap.numberOfTouchesRequired = 1;
+//    [self.clearView addGestureRecognizer:onceTap];
+    
     UITapGestureRecognizer * twiceTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAct:)];
     twiceTap.numberOfTapsRequired = 2;
     twiceTap.numberOfTouchesRequired = 1;
+    twiceTap.delegate = self;
     [self.clearView addGestureRecognizer:twiceTap];
 }
-
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    Log(@"gestureRecognizer shouldReceiveTouch");
+    if (_controlJudge) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+//    return NO;
+//}
 -(void)tapAct:(UITapGestureRecognizer *)tap{
     //点击一次
     if (tap.numberOfTapsRequired == 1) {
@@ -354,11 +381,11 @@
         return;
     }
     [super touchesMoved:touches withEvent:event];
-    Log(@"touch : touch move %ld", touch.tapCount);
+    Log(@"touch : touch move, tap count: %ld", touch.tapCount);
 
     //如果移动的距离过于小, 就判断为没有移动
     CGPoint tempPoint = [touches.anyObject locationInView:self];
-    if (fabs(tempPoint.x - _touchBeginPoint.x) < 8 && fabs(tempPoint.y - _touchBeginPoint.y) < 8) {
+    if (fabs(tempPoint.x - _touchBeginPoint.x) < LeastDistance && fabs(tempPoint.y - _touchBeginPoint.y) < LeastDistance) {
         return;
     }
     _hasMoved = YES;
@@ -415,12 +442,13 @@
 }
 //触摸结束
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    if (touches.count > 1 || event.allTouches.count > 1) {
-        return;
-    }
-    if (![[(UITouch *)touches.anyObject view] isEqual:self.clearView] && ![[(UITouch *)touches.anyObject view] isEqual:self]) {
-        return;
-    }
+    Log(@"touch ending");
+//    if (touches.count > 1 || event.allTouches.count > 1) {
+//        return;
+//    }
+//    if (![[(UITouch *)touches.anyObject view] isEqual:self.clearView] && ![[(UITouch *)touches.anyObject view] isEqual:self]) {
+//        return;
+//    }
     [super touchesEnded:touches withEvent:event];
     Log(@"touch end %ld", event.allTouches.count);
     //判断是否移动过,
@@ -464,7 +492,7 @@
         _timeView.sheetStateImageView.image = [UIImage imageNamed:@"progress_icon_l"];
     }
     _timeView.hidden = NO;
-    NSString * tempTime = [self calculateTimeWithTimeFormatter:value];
+    NSString * tempTime = calculateTimeWithTimeFormatter(value);
     if (tempTime.length > 5) {
         _timeView.sheetTimeLabel.text = [NSString stringWithFormat:@"00:%@/%@", tempTime, self.totalTimeLabel.text];
     }else{
@@ -480,14 +508,14 @@
 -(void)playOrPause{
     if (!self.isPlaying) {
         [self.viewAVplayer play];
-        self.playOrPauseBtn.selected = NO;
+        [self.playOrPauseBtn setBackgroundImage:[UIImage imageNamed:@"ad_pause_f_p"] forState:UIControlStateNormal];
         _isPlaying = YES;
         if ([self.delegate respondsToSelector:@selector(pause)]) {
             [self.delegate pause];
         }
     }else{
         [self.viewAVplayer pause];
-        self.playOrPauseBtn.selected = YES;
+        [self.playOrPauseBtn setBackgroundImage:[UIImage imageNamed:@"ad_play_f_p"] forState:UIControlStateNormal];
         _isPlaying = NO;
         if ([self.delegate respondsToSelector:@selector(play)]) {
             [self.delegate play];
@@ -530,12 +558,18 @@
 -(void)controlViewHidden{
     _topView.hidden = YES;
     _bottomView.hidden = YES;
+    if (_isFullScreen) {
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    }
     [_hiddenTimer invalidate];
 }
 #pragma mark - 控制条退出隐藏
 -(void)controlViewOutHidden{
     _topView.hidden = NO;
     _bottomView.hidden = NO;
+    if ([UIApplication sharedApplication].statusBarHidden) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    }
     if (!_hiddenTimer.valid) {
         _hiddenTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(controlViewHidden) userInfo:nil repeats:NO];
     }else{
@@ -549,6 +583,7 @@
 #pragma mark -----------------------------
 #pragma mark - KVO - 监测视频状态, 视频播放的核心部分
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    NSLog(@"pip -------- %@", keyPath);
     if ([keyPath isEqualToString:@"status"]) {        //获取到视频信息的状态, 成功就可以进行播放, 失败代表加载失败
         if (self.avplayerItem.status == AVPlayerItemStatusReadyToPlay) {   //准备好播放
             Log(@"AVPlayerItemStatusReadyToPlay: 视频成功播放");
@@ -574,10 +609,15 @@
     }else if([keyPath isEqualToString:@"loadedTimeRanges"]){ //当缓冲进度有变化的时候
         [self updateAvailableDuration];
     }else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]){ //当视频播放因为各种状态播放停止的时候, 这个属性会发生变化
-        if (self.isPlaying) {
-            [self.viewAVplayer play];
-            [self.actIndicator stopAnimating];
-            self.actIndicator.hidden = YES;
+        if (self.pipC && self.pipC.pictureInPictureActive) {
+            _isPlaying = YES;
+            [self playOrPause];
+        }else{
+            if (self.isPlaying) {
+                [self.viewAVplayer play];
+                [self.actIndicator stopAnimating];
+                self.actIndicator.hidden = YES;
+            }
         }
         Log(@"playbackLikelyToKeepUp change : %@", change);
     }else if([keyPath isEqualToString:@"playbackBufferEmpty"]){  //当没有任何缓冲部分可以播放的时候
@@ -619,7 +659,7 @@
         if (!weakSelf.sliderValueChanging) {
             [weakSelf.videoSlider setValue:(float)currentSecond animated:YES];
         }
-        NSString * tempTime = [weakSelf calculateTimeWithTimeFormatter:currentSecond];
+        NSString * tempTime = calculateTimeWithTimeFormatter(currentSecond);
         if (tempTime.length > 5) {
             weakSelf.timeLabel.text = [NSString stringWithFormat:@"00:%@", tempTime];
         }else{
@@ -761,13 +801,25 @@
 -(void)toPortraitUpdate{
     _isFullScreen = NO;
     self.exitScreenBtn.hidden = YES;
-    self.exitOrInScreenBt.selected = NO;
+    //处理状态条
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    if ([UIApplication sharedApplication].statusBarHidden) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    }
+    [self.exitOrInScreenBt setBackgroundImage:[UIImage imageNamed:@"play_mini_f_p"] forState:UIControlStateNormal];
 }
 
 -(void)toLandscapeUpdate{
     _isFullScreen = YES;
     self.exitScreenBtn.hidden = NO;
-    self.exitOrInScreenBt.selected = YES;
+    //处理状态条
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    if (self.bottomView.hidden) {
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    }else{
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    }
+    [self.exitOrInScreenBt setBackgroundImage:[UIImage imageNamed:@"play_full_f_p"] forState:UIControlStateNormal];
 }
 
 
@@ -860,23 +912,45 @@
         [Window bringSubviewToFront:self.lightView];
     }
 }
-#pragma mark - 根据秒数计算时间
--(NSString *)calculateTimeWithTimeFormatter:(long long)timeSecond{
-    NSString * theLastTime = nil;
-    if (timeSecond < 60) {
-        theLastTime = [NSString stringWithFormat:@"00:%.2lld", timeSecond];
-    }else if(timeSecond >= 60 && timeSecond < 3600){
-        theLastTime = [NSString stringWithFormat:@"%.2lld:%.2lld", timeSecond/60, timeSecond%60];
-    }else if(timeSecond >= 3600){
-        theLastTime = [NSString stringWithFormat:@"%.2lld:%.2lld:%.2lld", timeSecond/3600, timeSecond%3600/60, timeSecond%60];
+#pragma mark - 开启画中画
+- (IBAction)startPiP:(id)sender {
+    [self.pipC startPictureInPicture];
+    if ([AVPictureInPictureController isPictureInPictureSupported]) {
+        if (self.pipC.pictureInPicturePossible) {
+        }else{
+            Log(@"画中画不可用");
+        }
+    }else{
+        Log(@"此设备不支持画中画");
     }
-    return theLastTime;
+
 }
+#pragma mark - AVPictureInPictureControllerDelegate
+- (void)pictureInPictureControllerWillStartPictureInPicture:(AVPictureInPictureController *)pictureInPictureController{
+    Log(@"pip will start");
+}
+- (void)pictureInPictureControllerDidStartPictureInPicture:(AVPictureInPictureController *)pictureInPictureController{
+    Log(@"pip did start");
+}
+- (void)pictureInPictureController:(AVPictureInPictureController *)pictureInPictureController failedToStartPictureInPictureWithError:(NSError *)error{
+    Log(@"pip failed");
+}
+- (void)pictureInPictureControllerWillStopPictureInPicture:(AVPictureInPictureController *)pictureInPictureController{
+    Log(@"pip will stop");
+}
+- (void)pictureInPictureControllerDidStopPictureInPicture:(AVPictureInPictureController *)pictureInPictureController{
+    Log(@"pip did stop");
+}
+- (void)pictureInPictureController:(AVPictureInPictureController *)pictureInPictureController restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:(void (^)(BOOL restored))completionHandler{
+    Log(@"pip stop with handle");
+}
+
 #pragma mark - 禁止使用其他实例化方法
 -(instancetype)init{
     NSAssert(NO, @"请不要使用此实例化方法");
     return nil;
 }
+
 -(instancetype)initWithFrame:(CGRect)frame{
     NSAssert(NO, @"请不要使用此实例化方法");
     return nil;
