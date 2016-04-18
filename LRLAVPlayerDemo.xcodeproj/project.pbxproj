@@ -17,7 +17,6 @@
 		FC51F13F1BFC1A5E00E5BDA6 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC51F10D1BFC1A5E00E5BDA6 /* TestViewController.xib */; };
 		FC51F1401BFC1A5E00E5BDA6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC51F10E1BFC1A5E00E5BDA6 /* Images.xcassets */; };
 		FC51F1421BFC1A5E00E5BDA6 /* LRLAVPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1131BFC1A5E00E5BDA6 /* LRLAVPlayerTool.m */; };
-		FC51F1431BFC1A5E00E5BDA6 /* LRLAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1151BFC1A5E00E5BDA6 /* LRLAVPlayerView.m */; };
 		FC51F1441BFC1A5E00E5BDA6 /* LRLAVPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC51F1161BFC1A5E00E5BDA6 /* LRLAVPlayerView.xib */; };
 		FC51F1451BFC1A5E00E5BDA6 /* LRLLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1181BFC1A5E00E5BDA6 /* LRLLightView.m */; };
 		FC51F1461BFC1A5E00E5BDA6 /* LRLLightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC51F1191BFC1A5E00E5BDA6 /* LRLLightView.xib */; };
@@ -34,6 +33,7 @@
 		FC51F1521BFC1A5E00E5BDA6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1331BFC1A5E00E5BDA6 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		FC51F1531BFC1A5E00E5BDA6 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1351BFC1A5E00E5BDA6 /* View+MASAdditions.m */; };
 		FC51F1541BFC1A5E00E5BDA6 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1381BFC1A5E00E5BDA6 /* ViewController+MASAdditions.m */; };
+		FCDECECE1CC53CAC008B6BD8 /* LRLAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDECECD1CC53CAC008B6BD8 /* LRLAVPlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,7 +56,6 @@
 		FC51F1121BFC1A5E00E5BDA6 /* LRLAVPlayerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLAVPlayerTool.h; sourceTree = "<group>"; };
 		FC51F1131BFC1A5E00E5BDA6 /* LRLAVPlayerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLAVPlayerTool.m; sourceTree = "<group>"; };
 		FC51F1141BFC1A5E00E5BDA6 /* LRLAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLAVPlayerView.h; sourceTree = "<group>"; };
-		FC51F1151BFC1A5E00E5BDA6 /* LRLAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLAVPlayerView.m; sourceTree = "<group>"; };
 		FC51F1161BFC1A5E00E5BDA6 /* LRLAVPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRLAVPlayerView.xib; sourceTree = "<group>"; };
 		FC51F1171BFC1A5E00E5BDA6 /* LRLLightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLLightView.h; sourceTree = "<group>"; };
 		FC51F1181BFC1A5E00E5BDA6 /* LRLLightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLLightView.m; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		FC51F1361BFC1A5E00E5BDA6 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		FC51F1371BFC1A5E00E5BDA6 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		FC51F1381BFC1A5E00E5BDA6 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		FCDECECD1CC53CAC008B6BD8 /* LRLAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLAVPlayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				FC51F1141BFC1A5E00E5BDA6 /* LRLAVPlayerView.h */,
-				FC51F1151BFC1A5E00E5BDA6 /* LRLAVPlayerView.m */,
+				FCDECECD1CC53CAC008B6BD8 /* LRLAVPlayerView.m */,
 				FC51F1161BFC1A5E00E5BDA6 /* LRLAVPlayerView.xib */,
 				FC51F1171BFC1A5E00E5BDA6 /* LRLLightView.h */,
 				FC51F1181BFC1A5E00E5BDA6 /* LRLLightView.m */,
@@ -302,8 +302,8 @@
 				FC51F14F1BFC1A5E00E5BDA6 /* MASViewAttribute.m in Sources */,
 				FC51F14B1BFC1A5E00E5BDA6 /* MASCompositeConstraint.m in Sources */,
 				FC51F1471BFC1A5E00E5BDA6 /* TimeSheetView.m in Sources */,
-				FC51F1431BFC1A5E00E5BDA6 /* LRLAVPlayerView.m in Sources */,
 				FC51F14D1BFC1A5E00E5BDA6 /* MASConstraintMaker.m in Sources */,
+				FCDECECE1CC53CAC008B6BD8 /* LRLAVPlayerView.m in Sources */,
 				FC51F14C1BFC1A5E00E5BDA6 /* MASConstraint.m in Sources */,
 				FC51F1521BFC1A5E00E5BDA6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				FC51F14E1BFC1A5E00E5BDA6 /* MASLayoutConstraint.m in Sources */,
