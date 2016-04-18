@@ -310,7 +310,7 @@
 
 #pragma mark - 给进度条加的手势
 -(void)progressTapAct:(UITapGestureRecognizer *)tap{
-    Log(@"slider tap !");
+    AVDLog(@"slider tap !");
     CGPoint location = [tap locationInView:self.videoSlider];
     float value = location.x/self.videoSlider.bounds.size.width * self.totalSeconds;
     [self seekToTheTimeValue:value];
@@ -330,7 +330,7 @@
     [self.clearView addGestureRecognizer:twiceTap];
 }
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    Log(@"gestureRecognizer shouldReceiveTouch");
+    AVDLog(@"gestureRecognizer shouldReceiveTouch");
     if (_controlJudge) {
         return NO;
     }else{
@@ -360,7 +360,7 @@
         return;
     }
     [super touchesBegan:touches withEvent:event];
-    Log(@"touch : touch begin %ld", touch.tapCount);
+    AVDLog(@"touch : touch begin %ld", touch.tapCount);
 
     //触摸开始, 初始化一些值
     _hasMoved = NO;
@@ -381,7 +381,7 @@
         return;
     }
     [super touchesMoved:touches withEvent:event];
-    Log(@"touch : touch move, tap count: %ld", touch.tapCount);
+    AVDLog(@"touch : touch move, tap count: %ld", touch.tapCount);
 
     //如果移动的距离过于小, 就判断为没有移动
     CGPoint tempPoint = [touches.anyObject locationInView:self];
@@ -442,7 +442,7 @@
 }
 //触摸结束
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    Log(@"touch ending");
+    AVDLog(@"touch ending");
 //    if (touches.count > 1 || event.allTouches.count > 1) {
 //        return;
 //    }
@@ -450,7 +450,7 @@
 //        return;
 //    }
     [super touchesEnded:touches withEvent:event];
-    Log(@"touch end %ld", event.allTouches.count);
+    AVDLog(@"touch end %ld", event.allTouches.count);
     //判断是否移动过,
     if (_hasMoved) {
         if (_controlType == progressControl) { //进度控制就跳到响应的进度
@@ -532,7 +532,7 @@
     [self controlViewOutHidden];
 }
 - (IBAction)sliderValueChanged:(id)sender {
-    Log(@"inside value change");
+    AVDLog(@"inside value change");
     [self seekToTheTimeValue:self.videoSlider.value];
     _tap.enabled = YES;
 }
@@ -583,10 +583,9 @@
 #pragma mark -----------------------------
 #pragma mark - KVO - 监测视频状态, 视频播放的核心部分
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    NSLog(@"pip -------- %@", keyPath);
     if ([keyPath isEqualToString:@"status"]) {        //获取到视频信息的状态, 成功就可以进行播放, 失败代表加载失败
         if (self.avplayerItem.status == AVPlayerItemStatusReadyToPlay) {   //准备好播放
-            Log(@"AVPlayerItemStatusReadyToPlay: 视频成功播放");
+            AVDLog(@"AVPlayerItemStatusReadyToPlay: 视频成功播放");
             if (_isFisrtConfig) {
                 //self准备好播放
                 [self readyToPlay];
@@ -602,7 +601,7 @@
                 }
             }
         }else if(self.avplayerItem.status == AVPlayerItemStatusFailed){    //加载失败
-            Log(@"AVPlayerItemStatusFailed: 视频播放失败");
+            AVDLog(@"AVPlayerItemStatusFailed: 视频播放失败");
         }else if(self.avplayerItem.status == AVPlayerItemStatusUnknown){   //未知错误
         }
         _destoryed = NO;
@@ -619,13 +618,13 @@
                 self.actIndicator.hidden = YES;
             }
         }
-        Log(@"playbackLikelyToKeepUp change : %@", change);
+        AVDLog(@"playbackLikelyToKeepUp change : %@", change);
     }else if([keyPath isEqualToString:@"playbackBufferEmpty"]){  //当没有任何缓冲部分可以播放的时候
         [self.actIndicator startAnimating];
         self.actIndicator.hidden = NO;
-        Log(@"playbackBufferEmpty");
+        AVDLog(@"playbackBufferEmpty");
     }else if ([keyPath isEqualToString:@"playbackBufferFull"]){
-        Log(@"playbackBufferFull: change : %@", change);
+        AVDLog(@"playbackBufferFull: change : %@", change);
     }else if([keyPath isEqualToString:@"presentationSize"]){      //获取到视频的大小的时候调用
         if (!_isFullScreen) {
             CGSize size = self.avplayerItem.presentationSize;
@@ -638,7 +637,7 @@
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
         _canFullScreen = YES;
-        Log(@"presentationSize");
+        AVDLog(@"presentationSize");
     }
 }
 #pragma mark - 缓冲好准备播放所做的操作, 并且添加时间观察, 更新播放时间
@@ -682,7 +681,7 @@
     [self.actIndicator startAnimating];
     [self.viewAVplayer pause];
     CMTime changedTime = CMTimeMakeWithSeconds(value, 1);
-    Log(@"cmtime change time : %lld", changedTime.value);
+    AVDLog(@"cmtime change time : %lld", changedTime.value);
     __weak LRLAVPlayerView * weakSelf = self;
     [self.viewAVplayer seekToTime:changedTime completionHandler:^(BOOL finished){
         if (weakSelf.isPlaying) {
@@ -747,6 +746,9 @@
         case UIDeviceOrientationLandscapeRight:
             [self toOrientation:UIInterfaceOrientationLandscapeLeft];
             break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            [self toOrientation:UIInterfaceOrientationPortraitUpsideDown];
+            break;
         default:
             break;
     }
@@ -761,19 +763,19 @@
     if (currentOrientation == orientation) {
         return;
     }
-    if (orientation == UIInterfaceOrientationPortrait) {
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
         [self removeFromSuperview];
         [self.avplayerSuperView addSubview:self];
         [self mas_remakeConstraints:self.portraitBlock];
     }else{
-        if (currentOrientation == UIInterfaceOrientationPortrait) {
+        if (currentOrientation == UIInterfaceOrientationPortrait || currentOrientation == UIInterfaceOrientationPortraitUpsideDown) {
             [self removeFromSuperview];
             [Window addSubview:self];
             [self bringLightViewToFront];
             [self mas_remakeConstraints:self.landscapeBlock];
         }
     }
-    [[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:NO];
+    [[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:YES];
     [UIView beginAnimations:nil context:nil];
     //旋转视频播放的view和显示亮度的view
     self.transform = [self getOrientation];
@@ -784,7 +786,10 @@
 
 //根据状态条旋转的方向来旋转 avplayerView
 -(CGAffineTransform)getOrientation{
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (IsIpad) {
+        return CGAffineTransformIdentity;
+    }
     if (orientation == UIInterfaceOrientationPortrait) {
         [self toPortraitUpdate];
         return CGAffineTransformIdentity;
@@ -918,31 +923,49 @@
     if ([AVPictureInPictureController isPictureInPictureSupported]) {
         if (self.pipC.pictureInPicturePossible) {
         }else{
-            Log(@"画中画不可用");
+            AVDLog(@"画中画不可用");
         }
     }else{
-        Log(@"此设备不支持画中画");
+        AVDLog(@"此设备不支持画中画");
     }
 
 }
 #pragma mark - AVPictureInPictureControllerDelegate
 - (void)pictureInPictureControllerWillStartPictureInPicture:(AVPictureInPictureController *)pictureInPictureController{
-    Log(@"pip will start");
+    AVDLog(@"pip will start");
 }
 - (void)pictureInPictureControllerDidStartPictureInPicture:(AVPictureInPictureController *)pictureInPictureController{
-    Log(@"pip did start");
+    AVDLog(@"pip did start");
 }
 - (void)pictureInPictureController:(AVPictureInPictureController *)pictureInPictureController failedToStartPictureInPictureWithError:(NSError *)error{
-    Log(@"pip failed");
+    AVDLog(@"pip failed");
 }
 - (void)pictureInPictureControllerWillStopPictureInPicture:(AVPictureInPictureController *)pictureInPictureController{
-    Log(@"pip will stop");
+    AVDLog(@"pip will stop");
 }
 - (void)pictureInPictureControllerDidStopPictureInPicture:(AVPictureInPictureController *)pictureInPictureController{
-    Log(@"pip did stop");
-}
+    AVDLog(@"pip did stop");
+    for (UIView *view in self.subviews) {
+        [self bringSubviewToFront:view];
+    }
+//    NSLog(@"%@", NSStringFromCGRect(self.frame));
+//    NSLog(@"%@", NSStringFromCGRect(self.bottomView.frame));
+//    self.bottomView.backgroundColor = [UIColor redColor];
+////    [self bringSubviewToFront:self.bottomView];
+//    self.clearView.backgroundColor = [UIColor orangeColor];
+//    self.bottomView.hidden= NO;
+//    self.topView.hidden = NO;
+//    NSLog(@"%@", self.subviews);
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        NSInteger count = self.subviews.count;
+//        UIView *topView = self.subviews[count - 1];
+//        topView.backgroundColor = [UIColor redColor];
+//        topView.hidden = NO;
+////        [self bringSubviewToFront:topView];
+//    });
+ }
 - (void)pictureInPictureController:(AVPictureInPictureController *)pictureInPictureController restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:(void (^)(BOOL restored))completionHandler{
-    Log(@"pip stop with handle");
+    AVDLog(@"pip stop with handle");
 }
 
 #pragma mark - 禁止使用其他实例化方法
