@@ -74,7 +74,7 @@
 #pragma mark - 创建用于播放的View
 -(void)createAVPlayerView{
     //固定的实例化方法
-    self.avplayerView = [LRLAVPlayerView avplayerViewWithVideoUrlStr:@"http://f01.v1.cn/group2/M00/01/62/ChQB0FWBQ3SAU8dNJsBOwWrZwRc350-m.mp4" andInitialHeight:200.0 andSuperView:self.view];
+    self.avplayerView = [LRLAVPlayerView avplayerViewWithVideoUrlStr:@"http://baobab.wdjcdn.com/1463028607774b.mp4" andInitialHeight:200.0 andSuperView:self.view];
     self.avplayerView.delegate = self;
     [self.view addSubview:self.avplayerView];
     __weak LRLAVPlayerController * weakSelf = self;
