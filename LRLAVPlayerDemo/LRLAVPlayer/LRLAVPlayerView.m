@@ -975,8 +975,13 @@
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
+    
+    self = [super initWithFrame:frame];
+    if(self) {
+        
+    }
+    return self;
     NSAssert(NO, @"请不要使用此实例化方法");
     return nil;
 }
-
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -17,7 +17,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5as-eL-HCH">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="5as-eL-HCH" secondAttribute="height" multiplier="1:1" id="KmJ-m2-HTs"/>
                                 <constraint firstAttribute="width" constant="46" id="fv5-T8-nQB"/>
@@ -45,7 +44,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <constraints>
@@ -63,7 +61,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLT-ED-U7m">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="OLT-ED-U7m" secondAttribute="height" multiplier="1:1" id="9P4-Uq-3qo"/>
                             </constraints>
@@ -74,12 +71,10 @@
                         </button>
                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YG1-5M-aJl">
                             <rect key="frame" x="119" y="24" width="414" height="2"/>
-                            <animations/>
                             <color key="progressTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </progressView>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aA6-0t-rdF">
                             <rect key="frame" x="117" y="9" width="418" height="31"/>
-                            <animations/>
                             <color key="minimumTrackTintColor" red="0.55113875039934301" green="1" blue="0.47319761584335529" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <connections>
@@ -89,14 +84,12 @@
                         </slider>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MI-iv-vW7">
                             <rect key="frame" x="50" y="16" width="64" height="18"/>
-                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbu-mx-Ows">
                             <rect key="frame" x="605" y="0.0" width="50" height="50"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="fbu-mx-Ows" secondAttribute="height" multiplier="1:1" id="5VM-GM-6iY"/>
                             </constraints>
@@ -107,7 +100,6 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6A-Hu-bsj">
                             <rect key="frame" x="541" y="14" width="64" height="21"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="jq0-EM-VuZ"/>
                             </constraints>
@@ -116,7 +108,6 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <constraints>
@@ -141,15 +132,12 @@
                 </view>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="SvT-9K-3Oa">
                     <rect key="frame" x="309" y="190" width="37" height="37"/>
-                    <animations/>
                 </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YnK-FQ-f8W">
                     <rect key="frame" x="0.0" y="50" width="655" height="317"/>
-                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="SvT-9K-3Oa" secondAttribute="centerY" id="94f-92-DsQ"/>
