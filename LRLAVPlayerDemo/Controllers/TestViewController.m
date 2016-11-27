@@ -7,10 +7,10 @@
 //
 
 #import "TestViewController.h"
-#import "LRLAVPlayerView.h"
+#import "LRLVideoPlayerView.h"
 
 @interface TestViewController ()<LRLAVPlayDelegate>
-@property (nonatomic, strong) LRLAVPlayerView * avplayerView;
+@property (nonatomic, strong) LRLVideoPlayerView * avplayerView;
 @end
 
 @implementation TestViewController
@@ -22,7 +22,7 @@
 
 #pragma mark - 创建用于播放的View
 -(void)createAVPlayerView{
-    self.avplayerView = [LRLAVPlayerView avplayerViewWithVideoUrlStr:@"http://m3u8back.gougouvideo.com/m3u8_yyyy?i=4275259" andInitialHeight:200.0 andSuperView:self.view];
+    self.avplayerView = [LRLVideoPlayerView avplayerViewWithVideoUrlStr:@"http://m3u8back.gougouvideo.com/m3u8_yyyy?i=4275259" andInitialHeight:200.0 andSuperView:self.view];
     self.avplayerView.delegate = self;
     [self.view addSubview:self.avplayerView];
     __weak TestViewController * weakSelf = self;

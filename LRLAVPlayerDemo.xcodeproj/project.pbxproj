@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC0ED3FD1DE96A620083B8F1 /* LRLVideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0ED3FC1DE96A620083B8F1 /* LRLVideoPlayViewController.m */; };
 		FC2EFBC21BAA8B2900D9F3DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2EFBC11BAA8B2900D9F3DF /* AVFoundation.framework */; };
 		FC51F1391BFC1A5E00E5BDA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1021BFC1A5E00E5BDA6 /* AppDelegate.m */; };
 		FC51F13A1BFC1A5E00E5BDA6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC51F1031BFC1A5E00E5BDA6 /* LaunchScreen.xib */; };
@@ -17,7 +18,7 @@
 		FC51F13F1BFC1A5E00E5BDA6 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC51F10D1BFC1A5E00E5BDA6 /* TestViewController.xib */; };
 		FC51F1401BFC1A5E00E5BDA6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC51F10E1BFC1A5E00E5BDA6 /* Images.xcassets */; };
 		FC51F1421BFC1A5E00E5BDA6 /* LRLAVPlayerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1131BFC1A5E00E5BDA6 /* LRLAVPlayerTool.m */; };
-		FC51F1441BFC1A5E00E5BDA6 /* LRLAVPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC51F1161BFC1A5E00E5BDA6 /* LRLAVPlayerView.xib */; };
+		FC51F1441BFC1A5E00E5BDA6 /* LRLVideoPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC51F1161BFC1A5E00E5BDA6 /* LRLVideoPlayerView.xib */; };
 		FC51F1451BFC1A5E00E5BDA6 /* LRLLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1181BFC1A5E00E5BDA6 /* LRLLightView.m */; };
 		FC51F1461BFC1A5E00E5BDA6 /* LRLLightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC51F1191BFC1A5E00E5BDA6 /* LRLLightView.xib */; };
 		FC51F1471BFC1A5E00E5BDA6 /* TimeSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F11B1BFC1A5E00E5BDA6 /* TimeSheetView.m */; };
@@ -33,10 +34,12 @@
 		FC51F1521BFC1A5E00E5BDA6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1331BFC1A5E00E5BDA6 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		FC51F1531BFC1A5E00E5BDA6 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1351BFC1A5E00E5BDA6 /* View+MASAdditions.m */; };
 		FC51F1541BFC1A5E00E5BDA6 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC51F1381BFC1A5E00E5BDA6 /* ViewController+MASAdditions.m */; };
-		FCDECECE1CC53CAC008B6BD8 /* LRLAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDECECD1CC53CAC008B6BD8 /* LRLAVPlayerView.m */; };
+		FCDECECE1CC53CAC008B6BD8 /* LRLVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCDECECD1CC53CAC008B6BD8 /* LRLVideoPlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC0ED3FB1DE96A620083B8F1 /* LRLVideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLVideoPlayViewController.h; sourceTree = "<group>"; };
+		FC0ED3FC1DE96A620083B8F1 /* LRLVideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLVideoPlayViewController.m; sourceTree = "<group>"; };
 		FC2EFBC11BAA8B2900D9F3DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FC3110F61BA139AA008CA952 /* LRLAVPlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LRLAVPlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC51F1011BFC1A5E00E5BDA6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -55,8 +58,8 @@
 		FC51F1111BFC1A5E00E5BDA6 /* LRLAVPlayerDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLAVPlayerDefine.h; sourceTree = "<group>"; };
 		FC51F1121BFC1A5E00E5BDA6 /* LRLAVPlayerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLAVPlayerTool.h; sourceTree = "<group>"; };
 		FC51F1131BFC1A5E00E5BDA6 /* LRLAVPlayerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLAVPlayerTool.m; sourceTree = "<group>"; };
-		FC51F1141BFC1A5E00E5BDA6 /* LRLAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLAVPlayerView.h; sourceTree = "<group>"; };
-		FC51F1161BFC1A5E00E5BDA6 /* LRLAVPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRLAVPlayerView.xib; sourceTree = "<group>"; };
+		FC51F1141BFC1A5E00E5BDA6 /* LRLVideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLVideoPlayerView.h; sourceTree = "<group>"; };
+		FC51F1161BFC1A5E00E5BDA6 /* LRLVideoPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRLVideoPlayerView.xib; sourceTree = "<group>"; };
 		FC51F1171BFC1A5E00E5BDA6 /* LRLLightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLLightView.h; sourceTree = "<group>"; };
 		FC51F1181BFC1A5E00E5BDA6 /* LRLLightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLLightView.m; sourceTree = "<group>"; };
 		FC51F1191BFC1A5E00E5BDA6 /* LRLLightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRLLightView.xib; sourceTree = "<group>"; };
@@ -90,7 +93,7 @@
 		FC51F1361BFC1A5E00E5BDA6 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		FC51F1371BFC1A5E00E5BDA6 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		FC51F1381BFC1A5E00E5BDA6 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		FCDECECD1CC53CAC008B6BD8 /* LRLAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLAVPlayerView.m; sourceTree = "<group>"; };
+		FCDECECD1CC53CAC008B6BD8 /* LRLVideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLVideoPlayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +150,8 @@
 				FC51F10B1BFC1A5E00E5BDA6 /* TestViewController.h */,
 				FC51F10C1BFC1A5E00E5BDA6 /* TestViewController.m */,
 				FC51F10D1BFC1A5E00E5BDA6 /* TestViewController.xib */,
+				FC0ED3FB1DE96A620083B8F1 /* LRLVideoPlayViewController.h */,
+				FC0ED3FC1DE96A620083B8F1 /* LRLVideoPlayViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -154,9 +159,9 @@
 		FC51F1101BFC1A5E00E5BDA6 /* LRLAVPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				FC51F1141BFC1A5E00E5BDA6 /* LRLAVPlayerView.h */,
-				FCDECECD1CC53CAC008B6BD8 /* LRLAVPlayerView.m */,
-				FC51F1161BFC1A5E00E5BDA6 /* LRLAVPlayerView.xib */,
+				FC51F1141BFC1A5E00E5BDA6 /* LRLVideoPlayerView.h */,
+				FCDECECD1CC53CAC008B6BD8 /* LRLVideoPlayerView.m */,
+				FC51F1161BFC1A5E00E5BDA6 /* LRLVideoPlayerView.xib */,
 				FC51F1171BFC1A5E00E5BDA6 /* LRLLightView.h */,
 				FC51F1181BFC1A5E00E5BDA6 /* LRLLightView.m */,
 				FC51F1191BFC1A5E00E5BDA6 /* LRLLightView.xib */,
@@ -239,11 +244,13 @@
 		FC3110EE1BA139AA008CA952 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = V1;
+				CLASSPREFIX = LRL;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = codeWorm;
 				TargetAttributes = {
 					FC3110F51BA139AA008CA952 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 7CD9J62L5G;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -276,7 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC51F13D1BFC1A5E00E5BDA6 /* LRLAVPlayerController.xib in Resources */,
-				FC51F1441BFC1A5E00E5BDA6 /* LRLAVPlayerView.xib in Resources */,
+				FC51F1441BFC1A5E00E5BDA6 /* LRLVideoPlayerView.xib in Resources */,
 				FC51F1401BFC1A5E00E5BDA6 /* Images.xcassets in Resources */,
 				FC51F13F1BFC1A5E00E5BDA6 /* TestViewController.xib in Resources */,
 				FC51F1481BFC1A5E00E5BDA6 /* TimeSheetView.xib in Resources */,
@@ -295,6 +302,7 @@
 				FC51F1531BFC1A5E00E5BDA6 /* View+MASAdditions.m in Sources */,
 				FC51F1491BFC1A5E00E5BDA6 /* main.m in Sources */,
 				FC51F13C1BFC1A5E00E5BDA6 /* LRLAVPlayerController.m in Sources */,
+				FC0ED3FD1DE96A620083B8F1 /* LRLVideoPlayViewController.m in Sources */,
 				FC51F1391BFC1A5E00E5BDA6 /* AppDelegate.m in Sources */,
 				FC51F1421BFC1A5E00E5BDA6 /* LRLAVPlayerTool.m in Sources */,
 				FC51F1541BFC1A5E00E5BDA6 /* ViewController+MASAdditions.m in Sources */,
@@ -302,7 +310,7 @@
 				FC51F14B1BFC1A5E00E5BDA6 /* MASCompositeConstraint.m in Sources */,
 				FC51F1471BFC1A5E00E5BDA6 /* TimeSheetView.m in Sources */,
 				FC51F14D1BFC1A5E00E5BDA6 /* MASConstraintMaker.m in Sources */,
-				FCDECECE1CC53CAC008B6BD8 /* LRLAVPlayerView.m in Sources */,
+				FCDECECE1CC53CAC008B6BD8 /* LRLVideoPlayerView.m in Sources */,
 				FC51F14C1BFC1A5E00E5BDA6 /* MASConstraint.m in Sources */,
 				FC51F1521BFC1A5E00E5BDA6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				FC51F14E1BFC1A5E00E5BDA6 /* MASLayoutConstraint.m in Sources */,
@@ -341,8 +349,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -365,7 +375,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -386,8 +396,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -403,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -417,8 +429,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7CD9J62L5G;
 				INFOPLIST_FILE = LRLAVPlayerDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "codeWorm.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LRLAVPlayerDemo;
@@ -433,8 +446,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7CD9J62L5G;
 				INFOPLIST_FILE = LRLAVPlayerDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "codeWorm.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LRLAVPlayerDemo;

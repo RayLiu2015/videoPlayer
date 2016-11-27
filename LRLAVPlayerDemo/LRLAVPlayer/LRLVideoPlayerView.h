@@ -33,7 +33,7 @@ typedef enum : NSUInteger {
 -(void)pause;
 @end
 
-@interface LRLAVPlayerView : UIView
+@interface LRLVideoPlayerView : UIView
 {
     @public
     float * _videoHeight;
@@ -67,7 +67,7 @@ typedef enum : NSUInteger {
 /**
  * @b 唯一的实例方法, 请不要用其他的实例方法
  */
-+(LRLAVPlayerView *)avplayerViewWithVideoUrlStr:(NSString *)urlStr andInitialHeight:(float)height andSuperView:(UIView *)superView;
++(LRLVideoPlayerView *)avplayerViewWithVideoUrlStr:(NSString *)urlStr andInitialHeight:(float)height andSuperView:(UIView *)superView;
 
 /**
  * @b 暂时性的销毁播放器, 用于节省内存, 再用时可以回到销毁点继续播放

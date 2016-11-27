@@ -8,10 +8,10 @@
 
 #import <AVKit/AVKit.h>
 
-#import "LRLAVPlayerView.h"
+#import "LRLVideoPlayerView.h"
 #import "LRLAVPlayerTool.h"
 
-@interface LRLAVPlayerView ()<UIGestureRecognizerDelegate, AVPictureInPictureControllerDelegate>
+@interface LRLVideoPlayerView ()<UIGestureRecognizerDelegate, AVPictureInPictureControllerDelegate>
 {
     //用来控制上下菜单view隐藏的timer
     NSTimer * _hiddenTimer;
@@ -159,13 +159,13 @@
 
 @end
 
-@implementation LRLAVPlayerView
+@implementation LRLVideoPlayerView
 
 #pragma mark - 实例化方法
-+(LRLAVPlayerView *)avplayerViewWithVideoUrlStr:(NSString *)urlStr andInitialHeight:(float)height andSuperView:(UIView *)superView{
++(LRLVideoPlayerView *)avplayerViewWithVideoUrlStr:(NSString *)urlStr andInitialHeight:(float)height andSuperView:(UIView *)superView{
     static float videoHeight = 0.0;
     videoHeight = height;
-    LRLAVPlayerView * view = [[NSBundle mainBundle] loadNibNamed:@"LRLAVPlayerView" owner:nil options:nil].lastObject;
+    LRLVideoPlayerView * view = [[NSBundle mainBundle] loadNibNamed:@"LRLVideoPlayerView" owner:nil options:nil].lastObject;
     view.videoUrlStr = urlStr;
     view->_videoHeight = &videoHeight;
     view.avplayerSuperView = superView;
@@ -174,6 +174,7 @@
 
 #pragma mark - 从xib唤醒视图
 -(void)awakeFromNib{
+    [super awakeFromNib];
     //从xib唤醒的时候初始化一下值
     [self initialSelfView];
     
@@ -255,7 +256,7 @@
 #pragma mark - 用来创建用来显示亮度的view
 -(void)createLightView{
     Window.translatesAutoresizingMaskIntoConstraints = NO;
-    __weak LRLAVPlayerView * weakSelf = self;
+    __weak LRLVideoPlayerView * weakSelf = self;
     if (iOS8) {
         UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         _effectView = [[UIVisualEffectView alloc] initWithEffect:blur];
@@ -300,7 +301,7 @@
     _timeView.layer.cornerRadius = 10.0;
     [self addSubview:_timeView];
     
-    __weak LRLAVPlayerView * weakSelf = self;
+    __weak LRLVideoPlayerView * weakSelf = self;
     [_timeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(weakSelf);
         make.width.equalTo(@(120));
@@ -652,7 +653,7 @@
         self.timeLabel.text = @"00:00";
     }
     //这个是用来监测视频播放的进度做出相应的操作
-    __weak LRLAVPlayerView * weakSelf = self;
+    __weak LRLVideoPlayerView * weakSelf = self;
     self.timerObserver = [self.viewAVplayer addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:nil usingBlock:^(CMTime time) {
         long long currentSecond = weakSelf.avplayerItem.currentTime.value/weakSelf.avplayerItem.currentTime.timescale;
         if (!weakSelf.sliderValueChanging) {
@@ -682,7 +683,7 @@
     [self.viewAVplayer pause];
     CMTime changedTime = CMTimeMakeWithSeconds(value, 1);
     AVDLog(@"cmtime change time : %lld", changedTime.value);
-    __weak LRLAVPlayerView * weakSelf = self;
+    __weak LRLVideoPlayerView * weakSelf = self;
     [self.viewAVplayer seekToTime:changedTime completionHandler:^(BOOL finished){
         if (weakSelf.isPlaying) {
             [weakSelf.viewAVplayer play];
@@ -872,7 +873,7 @@
     [self.viewAVplayer play];
 }
 -(void)dealloc{
-    NSLog(@"LRLAVPlayerView dealloc");
+    NSLog(@"LRLVideoPlayerView dealloc");
     [self destoryAVPlayer];
 }
 

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LRLAVPlayerController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7N-Kf-1K0">
+                    <rect key="frame" x="147" y="509" width="81" height="28"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="releasePlayer">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="destoryButton:" destination="-1" eventType="touchUpInside" id="Uz3-qG-dVm"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dq4-NU-77q">
+                    <rect key="frame" x="144.5" y="557" width="86" height="30"/>
+                    <state key="normal" title="createPlayer">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="playButtonClicked:" destination="-1" eventType="touchUpInside" id="dcB-hl-FBk"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vv5-Uf-9g2">
+                    <rect key="frame" x="160.5" y="607" width="54" height="30"/>
+                    <state key="normal" title="startPip"/>
+                    <connections>
+                        <action selector="startPiP:" destination="-1" eventType="touchUpInside" id="YOl-sT-VS3"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Arf-hv-rAX">
+                    <rect key="frame" x="0.0" y="379" width="375" height="100"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="Hgo-Tt-z64"/>
+                    </constraints>
+                    <string key="text">单击播放器窗口 - 隐藏或显示操作栏, 双击 - 暂停或播放, 横向滑动, 调整视频播放进度, 在屏幕左侧上下滑动是调整亮度, 在屏幕右侧上下滑动是调整音量, 旋转屏幕全屏或者退出全屏, 点击进度条的某个位置同样可以调整进度, 这里的destory会直接销毁播放器</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="Dq4-NU-77q" secondAttribute="centerX" id="2hC-Mb-LzT"/>
+                <constraint firstItem="d7N-Kf-1K0" firstAttribute="top" secondItem="Arf-hv-rAX" secondAttribute="bottom" constant="30" id="4Ll-BM-NmS"/>
+                <constraint firstItem="Arf-hv-rAX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="71q-52-t6T"/>
+                <constraint firstItem="d7N-Kf-1K0" firstAttribute="centerX" secondItem="Dq4-NU-77q" secondAttribute="centerX" id="DiC-ej-Waz"/>
+                <constraint firstItem="vv5-Uf-9g2" firstAttribute="top" secondItem="Dq4-NU-77q" secondAttribute="bottom" constant="20" id="FRR-zP-Cal"/>
+                <constraint firstItem="vv5-Uf-9g2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ITx-Fr-ib5"/>
+                <constraint firstItem="Dq4-NU-77q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="137" id="Jmg-d5-O2r"/>
+                <constraint firstItem="d7N-Kf-1K0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="137" id="OGY-dp-WaD"/>
+                <constraint firstAttribute="trailing" secondItem="Arf-hv-rAX" secondAttribute="trailing" id="SXN-nA-l0f"/>
+                <constraint firstItem="Dq4-NU-77q" firstAttribute="top" secondItem="d7N-Kf-1K0" secondAttribute="bottom" constant="20" id="VXK-pj-Kra"/>
+                <constraint firstAttribute="trailing" secondItem="d7N-Kf-1K0" secondAttribute="trailing" constant="137" id="cKE-aX-qlK"/>
+                <constraint firstAttribute="bottom" secondItem="vv5-Uf-9g2" secondAttribute="bottom" constant="30" id="cwo-Hx-L7Z"/>
+                <constraint firstAttribute="trailing" secondItem="Dq4-NU-77q" secondAttribute="trailing" constant="137" id="scL-0M-3dX"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="OGY-dp-WaD"/>
+                    <exclude reference="cKE-aX-qlK"/>
+                    <exclude reference="Jmg-d5-O2r"/>
+                    <exclude reference="scL-0M-3dX"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="-19" y="314"/>
+        </view>
+    </objects>
+</document>

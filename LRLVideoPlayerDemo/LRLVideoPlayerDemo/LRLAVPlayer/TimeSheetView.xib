@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view alpha="0.5" contentMode="scaleToFill" id="iN0-l3-epB" customClass="TimeSheetView">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00/00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hew-Ob-Q3y">
+                    <rect key="frame" x="16" y="49" width="118" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="118" id="UXY-X8-nzz"/>
+                        <constraint firstAttribute="height" constant="16" id="aca-gl-aBK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="progress_icon_l" translatesAutoresizingMaskIntoConstraints="NO" id="XFM-wM-YWm">
+                    <rect key="frame" x="54" y="12" width="43" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="XFM-wM-YWm" secondAttribute="height" multiplier="43:25" id="bES-Dz-e0A"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="hew-Ob-Q3y" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Vyo-Jr-nf2"/>
+                <constraint firstItem="XFM-wM-YWm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="arG-nf-hEl"/>
+                <constraint firstItem="hew-Ob-Q3y" firstAttribute="top" secondItem="XFM-wM-YWm" secondAttribute="bottom" constant="16" id="bcq-Mv-21p"/>
+                <constraint firstItem="hew-Ob-Q3y" firstAttribute="top" secondItem="XFM-wM-YWm" secondAttribute="bottom" constant="12" id="c6f-ZA-hwG"/>
+                <constraint firstItem="XFM-wM-YWm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="jSW-2k-BRd"/>
+                <constraint firstAttribute="bottom" secondItem="hew-Ob-Q3y" secondAttribute="bottom" constant="5" id="kOh-pr-5W7"/>
+                <constraint firstItem="XFM-wM-YWm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="wca-oT-hok"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="bcq-Mv-21p"/>
+                    <exclude reference="jSW-2k-BRd"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="sheetStateImageView" destination="XFM-wM-YWm" id="83P-Vx-3pc"/>
+                <outlet property="sheetTimeLabel" destination="hew-Ob-Q3y" id="NaG-1Z-jZM"/>
+            </connections>
+            <point key="canvasLocation" x="527" y="72"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="progress_icon_l" width="128" height="100"/>
+    </resources>
+</document>

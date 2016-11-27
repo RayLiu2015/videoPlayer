@@ -9,14 +9,14 @@
 #import <AVKit/AVKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-#import "LRLAVPlayerView.h"
+#import "LRLVideoPlayerView.h"
 #import "TestViewController.h"
 #import "LRLAVPlayerController.h"
 
 @interface LRLAVPlayerController ()<LRLAVPlayDelegate, AVPictureInPictureControllerDelegate>
 
 //用来播放视频的view
-@property (nonatomic, strong) LRLAVPlayerView * avplayerView;
+@property (nonatomic, strong) LRLVideoPlayerView * avplayerView;
 
 @property (nonatomic, strong) AVPictureInPictureController *PiPVc;
 
@@ -74,7 +74,7 @@
 #pragma mark - 创建用于播放的View
 -(void)createAVPlayerView{
     //固定的实例化方法
-    self.avplayerView = [LRLAVPlayerView avplayerViewWithVideoUrlStr:@"http://baobab.wdjcdn.com/1463028607774b.mp4" andInitialHeight:200.0 andSuperView:self.view];
+    self.avplayerView = [LRLVideoPlayerView avplayerViewWithVideoUrlStr:@"http://baobab.wdjcdn.com/1463028607774b.mp4" andInitialHeight:200.0 andSuperView:self.view];
     self.avplayerView.delegate = self;
     [self.view addSubview:self.avplayerView];
     __weak LRLAVPlayerController * weakSelf = self;
