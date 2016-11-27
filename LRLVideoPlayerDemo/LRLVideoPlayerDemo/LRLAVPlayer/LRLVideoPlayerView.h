@@ -44,6 +44,11 @@ typedef void(^LayoutBlock)(MASConstraintMaker * make);
 @property (nonatomic, copy) NSString * videoUrlStr;
 
 /**
+ @b 是否开启后台播放模式, 默认关闭
+ */
+@property (assign, nonatomic) BOOL backPlayMode;
+
+/**
  * @b 唯一的实例方法, 请不要用其他的实例方法
  */
 +(LRLVideoPlayerView *)avplayerViewWithVideoUrlStr:(NSString *)urlStr andInitialHeight:(float)height andSuperView:(UIView *)superView;

@@ -187,6 +187,11 @@ typedef enum : NSUInteger {
     [self mas_makeConstraints:porBlock];
 }
 
+-(void)prepare{
+    self.videoPlayer.backPlayMode = self.backPlayMode;
+    [self.videoPlayer prepare];
+}
+
 -(void)play{
     [self.videoPlayer play];
     [self.playOrPauseBtn setBackgroundImage:[UIImage imageNamed:@"ad_pause_f_p"] forState:UIControlStateNormal];
@@ -219,8 +224,9 @@ typedef enum : NSUInteger {
     self.videoPlayer = nil;
 }
 
--(void)prepare{
-    [self.videoPlayer prepare];
+-(void)setBackPlayMode:(BOOL)backPlayMode{
+    _backPlayMode = backPlayMode;
+    self.videoPlayer.backPlayMode = backPlayMode;
 }
 
 #pragma mark - config UI
@@ -576,7 +582,7 @@ typedef enum : NSUInteger {
     LRLVideoPlayerItem *item = [[LRLVideoPlayerItem alloc] init];
     item.videoUrlStr = self.videoUrlStr;
     self.videoPlayer = [[LRLVideoPlayer alloc] initWithDelegate:self playerType:LRLVideoPlayerType_AVPlayer playItem:item];
-    
+    self.videoPlayer.backPlayMode = YES;
     self.playView = self.videoPlayer.playView;
     [self insertSubview:self.playView atIndex:0];
     [self.playView mas_makeConstraints:^(MASConstraintMaker *make) {

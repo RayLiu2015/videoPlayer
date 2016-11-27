@@ -20,33 +20,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7N-Kf-1K0">
-                    <rect key="frame" x="147" y="509" width="81" height="28"/>
+                    <rect key="frame" x="147" y="469" width="81" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="releasePlayer">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="destoryButton:" destination="-1" eventType="touchUpInside" id="Uz3-qG-dVm"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dq4-NU-77q">
-                    <rect key="frame" x="144.5" y="557" width="86" height="30"/>
-                    <state key="normal" title="createPlayer">
-                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="playButtonClicked:" destination="-1" eventType="touchUpInside" id="dcB-hl-FBk"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vv5-Uf-9g2">
-                    <rect key="frame" x="160.5" y="607" width="54" height="30"/>
-                    <state key="normal" title="startPip"/>
+                    <rect key="frame" x="160" y="567" width="54" height="30"/>
+                    <state key="normal" title="startPip">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="startPiP:" destination="-1" eventType="touchUpInside" id="YOl-sT-VS3"/>
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Arf-hv-rAX">
-                    <rect key="frame" x="0.0" y="379" width="375" height="100"/>
+                    <rect key="frame" x="0.0" y="359" width="375" height="100"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="Hgo-Tt-z64"/>
@@ -55,21 +49,47 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LE9-0X-We8">
+                    <rect key="frame" x="146" y="617" width="82" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="play in back">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" title="don't play in back">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="playInBack:" destination="-1" eventType="touchUpInside" id="k8i-PH-Lkv"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dq4-NU-77q">
+                    <rect key="frame" x="144.5" y="517" width="86" height="30"/>
+                    <state key="normal" title="createPlayer">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="playButtonClicked:" destination="-1" eventType="touchUpInside" id="dcB-hl-FBk"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="LE9-0X-We8" firstAttribute="top" secondItem="vv5-Uf-9g2" secondAttribute="bottom" constant="20" id="1iA-Xt-ntr"/>
                 <constraint firstAttribute="centerX" secondItem="Dq4-NU-77q" secondAttribute="centerX" id="2hC-Mb-LzT"/>
-                <constraint firstItem="d7N-Kf-1K0" firstAttribute="top" secondItem="Arf-hv-rAX" secondAttribute="bottom" constant="30" id="4Ll-BM-NmS"/>
+                <constraint firstItem="d7N-Kf-1K0" firstAttribute="top" secondItem="Arf-hv-rAX" secondAttribute="bottom" constant="10" id="4Ll-BM-NmS"/>
                 <constraint firstItem="Arf-hv-rAX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="71q-52-t6T"/>
+                <constraint firstItem="LE9-0X-We8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Air-rF-0D5"/>
                 <constraint firstItem="d7N-Kf-1K0" firstAttribute="centerX" secondItem="Dq4-NU-77q" secondAttribute="centerX" id="DiC-ej-Waz"/>
                 <constraint firstItem="vv5-Uf-9g2" firstAttribute="top" secondItem="Dq4-NU-77q" secondAttribute="bottom" constant="20" id="FRR-zP-Cal"/>
                 <constraint firstItem="vv5-Uf-9g2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ITx-Fr-ib5"/>
                 <constraint firstItem="Dq4-NU-77q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="137" id="Jmg-d5-O2r"/>
                 <constraint firstItem="d7N-Kf-1K0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="137" id="OGY-dp-WaD"/>
+                <constraint firstAttribute="bottom" secondItem="LE9-0X-We8" secondAttribute="bottom" constant="20" id="PFk-8c-wKy"/>
                 <constraint firstAttribute="trailing" secondItem="Arf-hv-rAX" secondAttribute="trailing" id="SXN-nA-l0f"/>
                 <constraint firstItem="Dq4-NU-77q" firstAttribute="top" secondItem="d7N-Kf-1K0" secondAttribute="bottom" constant="20" id="VXK-pj-Kra"/>
                 <constraint firstAttribute="trailing" secondItem="d7N-Kf-1K0" secondAttribute="trailing" constant="137" id="cKE-aX-qlK"/>
-                <constraint firstAttribute="bottom" secondItem="vv5-Uf-9g2" secondAttribute="bottom" constant="30" id="cwo-Hx-L7Z"/>
                 <constraint firstAttribute="trailing" secondItem="Dq4-NU-77q" secondAttribute="trailing" constant="137" id="scL-0M-3dX"/>
             </constraints>
             <variation key="default">
@@ -80,7 +100,7 @@
                     <exclude reference="scL-0M-3dX"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="-19" y="314"/>
+            <point key="canvasLocation" x="-19.5" y="313.5"/>
         </view>
     </objects>
 </document>

@@ -44,6 +44,32 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor darkGrayColor];
 }
+
+#pragma mark - 创建用于播放的View
+-(void)createAVPlayerView{
+    //固定的实例化方法
+    NSString *url = @"http://hc.yinyuetai.com/uploads/videos/common/B65B013CF61E82DC9766E8BDEEC8B602.flv?sc=8cafc5714c8a6265";
+    self.player = [LRLVideoPlayerView avplayerViewWithVideoUrlStr:url andInitialHeight:200.0 andSuperView:self.view];
+    self.player.backPlayMode = NO;
+    self.player.delegate = self;
+    [self.view addSubview:self.player];
+    __weak LRLUseVideoPlayerView_ViewController * weakSelf = self;
+    //我的播放器依赖 Masonry 第三方库
+    [self.player setPositionWithPortraitBlock:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.view).with.offset(60);
+        make.left.equalTo(weakSelf.view);
+        make.right.equalTo(weakSelf.view);
+        //添加竖屏时的限制, 这条也是固定的, 因为: _videoHeight 是float* 类型, 我可以通过它, 动态改视频播放器的高度;
+        make.height.equalTo(@(*(weakSelf.player.videoHeight)));
+    } andLandscapeBlock:^(MASConstraintMaker *make) {
+        make.width.equalTo(@(SCREEN_HEIGHT));
+        make.height.equalTo(@(SCREEN_WIDTH));
+        make.center.equalTo(weakSelf.view);
+    }];
+    [self.player prepare];
+}
+
+#pragma mark - act
 //播放
 - (IBAction)playButtonClicked:(id)sender {
     if (!self.player) {
@@ -62,27 +88,19 @@
     [self.player startPip];
 }
 
-#pragma mark - 创建用于播放的View
--(void)createAVPlayerView{
-    //固定的实例化方法
-    NSString *url = @"http://hc.yinyuetai.com/uploads/videos/common/B65B013CF61E82DC9766E8BDEEC8B602.flv?sc=8cafc5714c8a6265";
-    self.player = [LRLVideoPlayerView avplayerViewWithVideoUrlStr:url andInitialHeight:200.0 andSuperView:self.view];
-    self.player.delegate = self;
-    [self.view addSubview:self.player];
-    __weak LRLUseVideoPlayerView_ViewController * weakSelf = self;
-    //我的播放器依赖 Masonry 第三方库
-    [self.player setPositionWithPortraitBlock:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.view).with.offset(60);
-        make.left.equalTo(weakSelf.view);
-        make.right.equalTo(weakSelf.view);
-        //添加竖屏时的限制, 这条也是固定的, 因为: _videoHeight 是float* 类型, 我可以通过它, 动态改视频播放器的高度;
-        make.height.equalTo(@(*(weakSelf.player.videoHeight)));
-    } andLandscapeBlock:^(MASConstraintMaker *make) {
-        make.width.equalTo(@(SCREEN_HEIGHT));
-        make.height.equalTo(@(SCREEN_WIDTH));
-        make.center.equalTo(weakSelf.view);
-    }];
-    [self.player prepare];
+- (IBAction)playInBack:(id)sender {
+    if (!self.player) {
+        return;
+    }
+    UIButton *button = (UIButton *)sender;
+    if (button.selected) {
+        button.selected = NO;
+        self.player.backPlayMode = NO;
+    }else{
+        button.selected = YES;
+        self.player.backPlayMode = YES;
+        
+    }
 }
 
 #pragma mark - 关闭设备自动旋转, 然后手动监测设备旋转方向来旋转avplayerView
