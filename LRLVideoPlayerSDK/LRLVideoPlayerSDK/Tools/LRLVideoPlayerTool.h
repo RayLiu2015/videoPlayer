@@ -26,8 +26,6 @@
 
 +(instancetype)sharedTool;
 
-+(NSString *)calculateTimeWithTimeFormatter:(NSUInteger)timeSecond;
-
 +(NSError *)createAErrorWithErrorDetail:(NSString *)errorStr andErrorCode:(LRLVideoPlayerErrorCode)errorCode;
 
 @end

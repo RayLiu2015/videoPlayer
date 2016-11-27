@@ -58,7 +58,7 @@
  @param item 视频播放所需信息
  @return 视频播放器
  */
--(nonnull instancetype)initWithDelegate:(nonnull id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull LRLVideoPlayerItem *)item;
+-(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull LRLVideoPlayerItem *)item;
 
 /**
  @b 进行播放准备, 如果autoPlay设置为YES, 则调用prepare后自动播放, 如果 设置autoPlay为NO, 需要在回调 LRLVideoPlayerEvent_PrepareDone 后自行调用play进行播放

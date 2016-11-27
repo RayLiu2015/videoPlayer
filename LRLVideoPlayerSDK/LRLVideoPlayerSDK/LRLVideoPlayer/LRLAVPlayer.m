@@ -67,7 +67,7 @@
 }
 
 #pragma mark - LRLVideoPlayerProtocol
--(instancetype)initWithDelegate:(id<LRLVideoPlayerCallBackDelegate>)delegate andPlayView:(LRLVideoPlayerDrawView *)playView playItem:(nonnull LRLVideoPlayerItem *)item{
+-(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerCallBackDelegate>)delegate andPlayView:(nonnull LRLVideoPlayerDrawView *)playView playItem:(nonnull LRLVideoPlayerItem *)item{
     if (self = [super init]) {
         self.avplayerView = (LRLAVPlayerRenderView *)playView;
         self.delegate = delegate;
@@ -99,7 +99,6 @@
 }
 
 -(void)seekTo:(float)time{
-//    [self.avplayer pause];
     CMTime changedTime = CMTimeMakeWithSeconds(time, 1);
     [self handleEvent:LRLVideoPlayerEvent_StartBuffer error:nil];
     __weak __typeof(self) weakSelf = self;
@@ -109,9 +108,6 @@
         }
         __strong __typeof(weakSelf) sSelf = weakSelf;
         [sSelf handleEvent:LRLVideoPlayerEvent_EndBuffer error:nil];
-//        if (_isPlaying) {
-//            [weakSelf.avplayer play];
-//        }
     }];
 }
 
@@ -219,7 +215,7 @@
         }
     }];
     
-    self.pipC = [[AVPictureInPictureController alloc] initWithPlayerLayer:self.avplayerView.layer];
+    self.pipC = [[AVPictureInPictureController alloc] initWithPlayerLayer:(AVPlayerLayer *)self.avplayerView.layer];
     self.pipC.delegate = self;
 }
 

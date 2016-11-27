@@ -13,7 +13,7 @@
 
 @protocol LRLVideoPlayerCallBackDelegate <NSObject>
 
--(void)lrlVideoPlayerCallBackevent:(LRLVideoPlayerEvent)event errorInfo:(NSError *)errorInfo;
+-(void)lrlVideoPlayerCallBackevent:(LRLVideoPlayerEvent)event errorInfo:(nullable NSError *)errorInfo;
 
 -(void)lrlVideoPlayerCallBackposition:(float)position  duration:(float)duration;
 
@@ -30,7 +30,7 @@
 
 @property (assign, nonatomic) NSTimeInterval cacheDuration;
 
-@property (weak, nonatomic) id<LRLVideoPlayerCallBackDelegate> delegate;
+@property (weak, nonatomic, nullable) id<LRLVideoPlayerCallBackDelegate> delegate;
 
 @property (assign, nonatomic) CGSize videoSize;
 
@@ -44,7 +44,7 @@
  */
 @property (assign, nonatomic) BOOL backPlayMode;
 
--(instancetype)initWithDelegate:(id<LRLVideoPlayerCallBackDelegate>)delegate andPlayView:(nonnull LRLVideoPlayerDrawView *)playView playItem:(nonnull LRLVideoPlayerItem *)item;
+-(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerCallBackDelegate>)delegate andPlayView:(nonnull LRLVideoPlayerDrawView *)playView playItem:(nonnull LRLVideoPlayerItem *)item;
 
 -(void)prepare;
 

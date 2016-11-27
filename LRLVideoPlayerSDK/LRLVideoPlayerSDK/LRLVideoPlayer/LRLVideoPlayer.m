@@ -27,13 +27,12 @@
     VPDLog(@"LRLVideoPlayer dealloc");
 }
 
--(nonnull instancetype)initWithDelegate:(nonnull id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull LRLVideoPlayerItem *)item{
+-(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull LRLVideoPlayerItem *)item{
     if (self = [super init]) {
         self.delegate = delegate;
         if (type == LRLVideoPlayerType_AVPlayer) {
             self.playView = [[LRLAVPlayerRenderView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-            self.videoPlayer = [[LRLAVPlayer alloc] initWithDelegate:delegate andPlayView:self.playView playItem:item];
-            self.videoPlayer.delegate = self;
+            self.videoPlayer = [[LRLAVPlayer alloc] initWithDelegate:self andPlayView:(LRLVideoPlayerDrawView *)self.playView playItem:item];
         }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -45,7 +44,7 @@
     return self.videoPlayer.videoSize;
 }
 
--(CGFloat)duration{
+-(NSTimeInterval)duration{
     return self.videoPlayer.duration;
 }
 -(NSTimeInterval)position{
