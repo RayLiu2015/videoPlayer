@@ -15,5 +15,4 @@
 @interface LRLAVPlayer : NSObject<LRLVideoPlayerProtocol>
 
 
-
 @end

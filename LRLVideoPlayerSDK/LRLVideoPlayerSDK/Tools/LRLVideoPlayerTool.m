@@ -10,6 +10,22 @@
 
 @implementation LRLVideoPlayerTool
 
++(instancetype)sharedTool{
+    static LRLVideoPlayerTool *tool = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        tool = [[LRLVideoPlayerTool alloc] init];
+    });
+    return tool;
+}
+
+-(instancetype)init{
+    if (self = [super init]) {
+        self.playTypeDic = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
+
 +(NSString *)calculateTimeWithTimeFormatter:(NSUInteger)timeSecond{
     NSString * theLastTime = nil;
     if (timeSecond < 60) {
@@ -21,4 +37,12 @@
     }
     return theLastTime;
 }
+
+#pragma mark - 用来创建错误对象
++(NSError *)createAErrorWithErrorDetail:(NSString *)errorStr andErrorCode:(LRLVideoPlayerErrorCode)errorCode{
+    NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:errorStr forKey:NSLocalizedDescriptionKey];
+    NSError *error = [NSError errorWithDomain:@"com.codeWorm.videoPlayerSDK" code:errorCode userInfo:errorInfo];
+    return error;
+}
+
 @end

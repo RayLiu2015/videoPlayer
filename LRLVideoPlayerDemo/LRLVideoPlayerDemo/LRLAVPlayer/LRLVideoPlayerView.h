@@ -7,37 +7,24 @@
 //
 
 #import "Masonry.h"
-#import "AppDelegate.h"
-#import "LRLLightView.h"
-#import "TimeSheetView.h"
-#import "LRLAVPlayerDefine.h"
+#import "LRLVideoPlayerViewDefine.h"
 
 #import <UIKit/UIKit.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import <AVFoundation/AVFoundation.h>
+#import <LRLVideoPlayerSDK/LRLVideoPlayerSDK.h>
 
 typedef void(^LayoutBlock)(MASConstraintMaker * make);
 
-typedef enum : NSUInteger {
-    progressControl,
-    voiceControl,
-    lightControl,
-    noneControl = 999,
-} ControlType;
-
 @protocol LRLAVPlayDelegate <NSObject>
 @optional
-//开始时调用的方法
--(void)play;
-//暂停时调用的方法
--(void)pause;
+
 @end
 
 @interface LRLVideoPlayerView : UIView
-{
-    @public
-    float * _videoHeight;
-}
+
+/**
+ @b 用于确定视频高度, 在内部已经根据屏幕宽度计算好了
+ */
+@property (nonatomic) float *videoHeight;
 
 @property (nonatomic, weak) id<LRLAVPlayDelegate> delegate;
 
@@ -49,20 +36,12 @@ typedef enum : NSUInteger {
 /**
  *  @b 视频的总长度
  */
-@property (nonatomic, assign, readonly) float totalSeconds;
+@property (assign, nonatomic) NSTimeInterval duration;
 
 /**
  * @b 视频源urlStr
  */
 @property (nonatomic, copy) NSString * videoUrlStr;
-
-
--(void)seekToTheTimeValue:(float)value;
-
-/**
- * @b 设置初始位置block和, 全屏的block
- */
--(void)setPositionWithPortraitBlock:(LayoutBlock)porBlock andLandscapeBlock:(LayoutBlock)landscapeBlock;
 
 /**
  * @b 唯一的实例方法, 请不要用其他的实例方法
@@ -70,13 +49,38 @@ typedef enum : NSUInteger {
 +(LRLVideoPlayerView *)avplayerViewWithVideoUrlStr:(NSString *)urlStr andInitialHeight:(float)height andSuperView:(UIView *)superView;
 
 /**
- * @b 暂时性的销毁播放器, 用于节省内存, 再用时可以回到销毁点继续播放
+ * @b 设置初始位置block和, 全屏的block
  */
--(void)destoryAVPlayer;
+-(void)setPositionWithPortraitBlock:(LayoutBlock)porBlock andLandscapeBlock:(LayoutBlock)landscapeBlock;
 
 /**
- * @b destory 后再次播放, 会记住之前的播放状态, 时间和是否暂停
+ @b 进行播放准备, 如果autoPlay设置为YES, 则调用prepare后自动播放, 如果 设置autoPlay为NO, 需要在回调 LRLVideoPlayerEvent_PrepareDone 后自行调用play进行播放
  */
--(void)replay;
+-(void)prepare;
+
+/**
+ @b 进行播放, 需要收到 LRLVideoPlayerEvent_PrepareDone 回调后, 调用才有效
+ */
+-(void)play;
+
+/**
+ @b 暂停操作
+ */
+-(void)pause;
+
+/**
+ @b 开始画中画
+ */
+-(void)startPip;
+
+/**
+ @b 结束画中画
+ */
+-(void)stopPip;
+
+/**
+ * @b 释放播放器
+ */
+-(void)releasePlayer;
 
 @end

@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LRLVideoPlayerRenderView : UIView
-@end
-
-@interface LRLAVPlayerRenderView : LRLVideoPlayerRenderView
+@interface LRLAVPlayerRenderView : UIView
 @end
 

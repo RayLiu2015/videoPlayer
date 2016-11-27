@@ -9,10 +9,6 @@
 #import "LRLVideoPlayerRenderView.h"
 #import <AVFoundation/AVFoundation.h>
 
-@implementation LRLVideoPlayerRenderView
-@end
-
-
 @implementation LRLAVPlayerRenderView
 
 +(Class)layerClass{

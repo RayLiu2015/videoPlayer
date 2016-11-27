@@ -10,4 +10,6 @@
 
 @interface LRLVideoPlayerItem : NSObject
 
+@property (nonatomic, copy) NSString *videoUrlStr;
+
 @end

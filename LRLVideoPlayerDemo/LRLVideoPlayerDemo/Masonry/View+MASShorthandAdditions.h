@@ -29,7 +29,14 @@
 @property (nonatomic, strong, readonly) MASViewAttribute *baseline;
 @property (nonatomic, strong, readonly) MASViewAttribute *(^attribute)(NSLayoutAttribute attr);
 
-#if TARGET_OS_IPHONE
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 80000) || (__TV_OS_VERSION_MIN_REQUIRED >= 9000) || (__MAC_OS_X_VERSION_MIN_REQUIRED >= 101100)
+
+@property (nonatomic, strong, readonly) MASViewAttribute *firstBaseline;
+@property (nonatomic, strong, readonly) MASViewAttribute *lastBaseline;
+
+#endif
+
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 80000) || (__TV_OS_VERSION_MIN_REQUIRED >= 9000)
 
 @property (nonatomic, strong, readonly) MASViewAttribute *leftMargin;
 @property (nonatomic, strong, readonly) MASViewAttribute *rightMargin;
@@ -67,7 +74,14 @@ MAS_ATTR_FORWARD(centerX);
 MAS_ATTR_FORWARD(centerY);
 MAS_ATTR_FORWARD(baseline);
 
-#if TARGET_OS_IPHONE
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 80000) || (__TV_OS_VERSION_MIN_REQUIRED >= 9000) || (__MAC_OS_X_VERSION_MIN_REQUIRED >= 101100)
+
+MAS_ATTR_FORWARD(firstBaseline);
+MAS_ATTR_FORWARD(lastBaseline);
+
+#endif
+
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 80000) || (__TV_OS_VERSION_MIN_REQUIRED >= 9000)
 
 MAS_ATTR_FORWARD(leftMargin);
 MAS_ATTR_FORWARD(rightMargin);
@@ -84,15 +98,15 @@ MAS_ATTR_FORWARD(centerYWithinMargins);
     return [self mas_attribute];
 }
 
-- (NSArray *)makeConstraints:(void(^)(MASConstraintMaker *))block {
+- (NSArray *)makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *))block {
     return [self mas_makeConstraints:block];
 }
 
-- (NSArray *)updateConstraints:(void(^)(MASConstraintMaker *))block {
+- (NSArray *)updateConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *))block {
     return [self mas_updateConstraints:block];
 }
 
-- (NSArray *)remakeConstraints:(void(^)(MASConstraintMaker *))block {
+- (NSArray *)remakeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *))block {
     return [self mas_remakeConstraints:block];
 }
 

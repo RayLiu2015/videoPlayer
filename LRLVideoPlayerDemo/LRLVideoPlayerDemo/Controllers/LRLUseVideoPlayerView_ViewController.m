@@ -12,6 +12,10 @@
 #import "LRLVideoPlayerView.h"
 #import "LRLUseVideoPlayerView_ViewController.h"
 
+/*
+ 这个控制器展示的是LRLVideoPlayerView的使用, LRLVideoPlayerView是对LRLVideoPlayerSDK的UI封装,  LRLVideoPlayerSDK 也可直接进行使用
+ */
+
 @interface LRLUseVideoPlayerView_ViewController ()<LRLAVPlayDelegate>
 
 //用来播放视频的view
@@ -20,7 +24,8 @@
 @end
 
 @implementation LRLUseVideoPlayerView_ViewController
-//注意, 要实现正常的旋转屏, 设置处的旋转屏幕开启 上, 左, 右, 而代码中需要控制关闭设备自动旋转, 然后我在内部的实现是: 然后手动监测设备旋转方向来旋转avplayerView, 你要做的是各种视图控制器 实现:
+
+//注意, 要实现正常的旋转屏, 设置处的旋转屏幕开启 上, 左, 右, 而代码中需要控制关闭设备自动旋转, 然后我在内部的实现是: 然后手动监测设备旋转方向来旋转 LRLVideoPlayerView
 /*
  -(BOOL)shouldAutorotate{
     return NO;
@@ -34,8 +39,6 @@
  }
  */
 
-//播放器所用的图片资源, 在压缩包里的 Resource 文件夹下有一份
-//代码全在在LRLAVPlayer文件夹下
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,17 +59,17 @@
 }
 
 - (IBAction)startPiP:(id)sender {
+    [self.player startPip];
 }
 
 #pragma mark - 创建用于播放的View
 -(void)createAVPlayerView{
     //固定的实例化方法
     NSString *url = @"http://hc.yinyuetai.com/uploads/videos/common/B65B013CF61E82DC9766E8BDEEC8B602.flv?sc=8cafc5714c8a6265";
-    //@"http://hc.yinyuetai.com/uploads/videos/common/1E6C015157BDE4808FCA91F8816299AF.flv?sc=022ea7aef9289b80"
     self.player = [LRLVideoPlayerView avplayerViewWithVideoUrlStr:url andInitialHeight:200.0 andSuperView:self.view];
     self.player.delegate = self;
     [self.view addSubview:self.player];
-    __weak LRLAVPlayerController * weakSelf = self;
+    __weak LRLUseVideoPlayerView_ViewController * weakSelf = self;
     //我的播放器依赖 Masonry 第三方库
     [self.player setPositionWithPortraitBlock:^(MASConstraintMaker *make) {
         make.top.equalTo(weakSelf.view).with.offset(60);
@@ -79,6 +82,7 @@
         make.height.equalTo(@(SCREEN_WIDTH));
         make.center.equalTo(weakSelf.view);
     }];
+    [self.player prepare];
 }
 
 #pragma mark - 关闭设备自动旋转, 然后手动监测设备旋转方向来旋转avplayerView

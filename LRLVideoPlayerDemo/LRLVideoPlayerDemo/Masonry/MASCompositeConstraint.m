@@ -97,7 +97,7 @@
 
 #pragma mark - Animator proxy
 
-#if TARGET_OS_MAC && !TARGET_OS_IPHONE
+#if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_OS_TV)
 
 - (MASConstraint *)animator {
     for (MASConstraint *constraint in self.childConstraints) {
@@ -126,6 +126,12 @@
 - (void)setInsets:(MASEdgeInsets)insets {
     for (MASConstraint *constraint in self.childConstraints) {
         constraint.insets = insets;
+    }
+}
+
+- (void)setInset:(CGFloat)inset {
+    for (MASConstraint *constraint in self.childConstraints) {
+        constraint.inset = inset;
     }
 }
 
