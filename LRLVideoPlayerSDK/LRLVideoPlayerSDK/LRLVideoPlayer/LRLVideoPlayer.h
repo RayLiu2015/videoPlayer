@@ -11,6 +11,12 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+
+/**
+ @b 当前播放器版本
+ */
+extern const NSString *_Nonnull LRLVideoPlayerVersion;
+
 @interface LRLVideoPlayer : NSObject
 
 /**
@@ -21,7 +27,7 @@
 /**
  @b 视频时长 单位: s
  */
-@property (assign, nonatomic, readonly) NSTimeInterval duration;
+@property (assign, nonatomic, readonly) Float64 duration;
 
 /**
  @b 视频播放的位置 单位: s
@@ -55,10 +61,10 @@
  
  @param delegate 代理
  @param type 播放器类型
- @param item 视频播放所需信息
+ @param items 视频播放所需信息
  @return 视频播放器
  */
--(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull LRLVideoPlayerItem *)item;
+-(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull NSArray<LRLVideoPlayerItem *> *)items;
 
 /**
  @b 进行播放准备, 如果autoPlay设置为YES, 则调用prepare后自动播放, 如果 设置autoPlay为NO, 需要在回调 LRLVideoPlayerEvent_PrepareDone 后自行调用play进行播放
@@ -69,6 +75,11 @@
  @b 进行播放, 需要收到 LRLVideoPlayerEvent_PrepareDone 回调后, 调用才有效
  */
 -(void)play;
+
+/**
+ @b 播放队列的下一个视频
+ */
+-(void)playNext;
 
 /**
  @b 暂停操作

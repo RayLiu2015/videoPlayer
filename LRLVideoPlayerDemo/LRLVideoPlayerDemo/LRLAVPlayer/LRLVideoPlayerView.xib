@@ -20,26 +20,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="655" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5as-eL-HCH">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="5as-eL-HCH" secondAttribute="height" multiplier="1:1" id="KmJ-m2-HTs"/>
-                                <constraint firstAttribute="width" constant="46" id="fv5-T8-nQB"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <rect key="frame" x="0.0" y="0.0" width="62" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="退出全屏">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="fv5-T8-nQB"/>
-                                </mask>
-                            </variation>
                             <connections>
                                 <action selector="exitFullScreen:" destination="iN0-l3-epB" eventType="touchUpInside" id="V3z-OS-wk6"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISl-Sp-TNr">
-                            <rect key="frame" x="100" y="0.0" width="75" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISl-Sp-TNr">
+                            <rect key="frame" x="92" y="0.0" width="77" height="50"/>
                             <state key="normal" title="开启画中画">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -47,6 +38,21 @@
                                 <action selector="startPiP:" destination="iN0-l3-epB" eventType="touchUpInside" id="4pm-qG-ugP"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAX-s4-mhP">
+                            <rect key="frame" x="199" y="0.0" width="46" height="50"/>
+                            <state key="normal" title="下一集">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="nextVideo:" destination="iN0-l3-epB" eventType="touchUpInside" id="uqG-n9-uKW"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第0集" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYh-GP-xR3">
+                            <rect key="frame" x="585" y="0.0" width="40" height="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <gestureRecognizers/>
@@ -54,10 +60,17 @@
                         <constraint firstAttribute="width" secondItem="tTj-Fq-cK9" secondAttribute="height" multiplier="655:50" id="D9l-ic-xm7"/>
                         <constraint firstItem="ISl-Sp-TNr" firstAttribute="top" secondItem="tTj-Fq-cK9" secondAttribute="top" id="Gqq-rm-iI7"/>
                         <constraint firstAttribute="bottom" secondItem="ISl-Sp-TNr" secondAttribute="bottom" id="KMU-Bd-ktD"/>
+                        <constraint firstAttribute="bottom" secondItem="pYh-GP-xR3" secondAttribute="bottom" id="P3V-uE-syH"/>
                         <constraint firstItem="5as-eL-HCH" firstAttribute="top" secondItem="tTj-Fq-cK9" secondAttribute="top" id="UEo-DZ-S2S"/>
                         <constraint firstAttribute="bottom" secondItem="5as-eL-HCH" secondAttribute="bottom" id="Ygv-he-4qo"/>
-                        <constraint firstItem="ISl-Sp-TNr" firstAttribute="leading" secondItem="5as-eL-HCH" secondAttribute="trailing" constant="50" id="lbr-4X-aEP"/>
+                        <constraint firstAttribute="bottom" secondItem="jAX-s4-mhP" secondAttribute="bottom" id="b3p-Ix-8sD"/>
+                        <constraint firstAttribute="trailing" secondItem="pYh-GP-xR3" secondAttribute="trailing" constant="30" id="fMn-ev-c5U"/>
+                        <constraint firstItem="jAX-s4-mhP" firstAttribute="centerY" secondItem="ISl-Sp-TNr" secondAttribute="centerY" id="lMk-1b-ZP2"/>
+                        <constraint firstItem="ISl-Sp-TNr" firstAttribute="leading" secondItem="5as-eL-HCH" secondAttribute="trailing" constant="30" id="lbr-4X-aEP"/>
                         <constraint firstItem="5as-eL-HCH" firstAttribute="leading" secondItem="tTj-Fq-cK9" secondAttribute="leading" id="mbm-f9-f9M"/>
+                        <constraint firstItem="jAX-s4-mhP" firstAttribute="leading" secondItem="ISl-Sp-TNr" secondAttribute="trailing" constant="30" id="qQE-Jw-Fjd"/>
+                        <constraint firstItem="pYh-GP-xR3" firstAttribute="top" secondItem="tTj-Fq-cK9" secondAttribute="top" id="xZa-pr-QhE"/>
+                        <constraint firstItem="jAX-s4-mhP" firstAttribute="top" secondItem="tTj-Fq-cK9" secondAttribute="top" id="yf9-bd-w6O"/>
                     </constraints>
                 </view>
                 <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Xn-f7-a2k">
@@ -164,6 +177,7 @@
                 <outlet property="clearView" destination="YnK-FQ-f8W" id="wMl-U2-asr"/>
                 <outlet property="exitOrInScreenBt" destination="fbu-mx-Ows" id="OV7-2R-hRs"/>
                 <outlet property="exitScreenBtn" destination="5as-eL-HCH" id="un2-Zd-OfK"/>
+                <outlet property="playItemIndexLabel" destination="pYh-GP-xR3" id="3iP-JM-kkH"/>
                 <outlet property="playOrPauseBtn" destination="OLT-ED-U7m" id="tck-Mb-vvq"/>
                 <outlet property="timeLabel" destination="6MI-iv-vW7" id="Y7M-ax-Aw7"/>
                 <outlet property="topView" destination="tTj-Fq-cK9" id="N79-vC-mC2"/>

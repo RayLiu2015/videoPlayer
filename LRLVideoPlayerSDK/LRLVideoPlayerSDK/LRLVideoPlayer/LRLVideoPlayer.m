@@ -12,6 +12,8 @@
 #import "LRLVideoPlayerConfig.h"
 #import "LRLVideoPlayerRenderView.h"
 
+const NSString *LRLVideoPlayerVersion = @"1.2";
+
 @interface LRLVideoPlayer ()<LRLVideoPlayerCallBackDelegate>
 
 @property (strong, nonatomic) id<LRLVideoPlayerProtocol> videoPlayer;
@@ -27,12 +29,12 @@
     VPDLog(@"LRLVideoPlayer dealloc");
 }
 
--(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull LRLVideoPlayerItem *)item{
+-(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull LRLVideoPlayerItem *)items{
     if (self = [super init]) {
         self.delegate = delegate;
         if (type == LRLVideoPlayerType_AVPlayer) {
             self.playView = [[LRLAVPlayerRenderView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-            self.videoPlayer = [[LRLAVPlayer alloc] initWithDelegate:self andPlayView:(LRLVideoPlayerDrawView *)self.playView playItem:item];
+            self.videoPlayer = [[LRLAVPlayer alloc] initWithDelegate:self andPlayView:(LRLVideoPlayerDrawView *)self.playView playItem:items];
         }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -44,7 +46,7 @@
     return self.videoPlayer.videoSize;
 }
 
--(NSTimeInterval)duration{
+-(Float64)duration{
     return self.videoPlayer.duration;
 }
 -(NSTimeInterval)position{
@@ -71,6 +73,10 @@
     [self.videoPlayer play];
 }
 
+-(void)playNext{
+    [self.videoPlayer playNext];
+}
+
 -(void)pause{
     [self.videoPlayer pause];
 }
@@ -92,21 +98,15 @@
     self.videoPlayer = nil;
 }
 
--(void)lrlVideoPlayerCallBackevent:(LRLVideoPlayerEvent)event errorInfo:(NSError *)errorInfo{
-    if ([self.delegate respondsToSelector:@selector(lrlVideoPlayer:event:errorInfo:)]) {
-        [self.delegate lrlVideoPlayer:self event:event errorInfo:errorInfo];
+-(void)lrlVideoPlayerCallBackevent:(LRLVideoPlayerEvent)event errorInfo:(nullable NSError *)errorInfo atIndex:(NSInteger)index{
+    if ([self.delegate respondsToSelector:@selector(lrlVideoPlayer:event:errorInfo:atIndex:)]) {
+        [self.delegate lrlVideoPlayer:self event:event errorInfo:errorInfo atIndex:index];
     }
 }
 
--(void)lrlVideoPlayerCallBackCacheDuration:(float)cacheDuration duration:(float)duration{
-    if ([self.delegate  respondsToSelector:@selector(lrlVideoPlayer:cacheDuration:duration:)]) {
-        [self.delegate lrlVideoPlayer:self cacheDuration:cacheDuration duration:duration];
-    }
-}
-
--(void)lrlVideoPlayerCallBackposition:(float)position duration:(float)duration{
-    if ([self.delegate respondsToSelector:@selector(lrlVideoPlayer:position:duration:)]) {
-        [self.delegate lrlVideoPlayer:self position:position duration:duration];
+-(void)lrlVideoPlayerCallBackPosition:(Float64)position cacheDuration:(Float64)cacheDuration duration:(Float64)duration atIndex:(NSInteger)index{
+    if ([self.delegate respondsToSelector:@selector(lrlVideoPlayer:position:cacheDuration:duration:atIndex:)]) {
+        [self.delegate lrlVideoPlayer:self position:position cacheDuration:cacheDuration duration:duration atIndex:index];
     }
 }
 

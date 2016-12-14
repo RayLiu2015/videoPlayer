@@ -16,7 +16,6 @@ typedef void(^LayoutBlock)(MASConstraintMaker * make);
 
 @protocol LRLAVPlayDelegate <NSObject>
 @optional
-
 @end
 
 @interface LRLVideoPlayerView : UIView
@@ -36,12 +35,7 @@ typedef void(^LayoutBlock)(MASConstraintMaker * make);
 /**
  *  @b 视频的总长度
  */
-@property (assign, nonatomic) NSTimeInterval duration;
-
-/**
- * @b 视频源urlStr
- */
-@property (nonatomic, copy) NSString * videoUrlStr;
+@property (assign, nonatomic) Float64 duration;
 
 /**
  @b 是否开启后台播放模式, 默认关闭
@@ -49,9 +43,15 @@ typedef void(^LayoutBlock)(MASConstraintMaker * make);
 @property (assign, nonatomic) BOOL backPlayMode;
 
 /**
- * @b 唯一的实例方法, 请不要用其他的实例方法
+ @b 唯一的实例方法, 请不要用其他的实例方法
+
+ @param playItems 所要播放视频的信息
+ @param height 视频的初始高度
+ @param superView 视频视图被添加的父视图
+ @return 视频播放器
  */
-+(LRLVideoPlayerView *)avplayerViewWithVideoUrlStr:(NSString *)urlStr andInitialHeight:(float)height andSuperView:(UIView *)superView;
++(LRLVideoPlayerView *)avplayerViewWithPlayItems:(NSArray<LRLVideoPlayerItem *> *)playItems andInitialHeight:(float)height andSuperView:(UIView *)superView;
+
 
 /**
  * @b 设置初始位置block和, 全屏的block

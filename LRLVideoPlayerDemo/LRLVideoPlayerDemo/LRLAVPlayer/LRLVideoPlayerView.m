@@ -54,6 +54,10 @@ typedef enum : NSUInteger {
     BOOL _autoPlay;
 }
 
+/**
+ @b 用于显示播放到第几个视频
+ */
+@property (weak, nonatomic) IBOutlet UILabel *playItemIndexLabel;
 
 /**
  *  @b 右下角的那个控制全屏的button
@@ -155,6 +159,9 @@ typedef enum : NSUInteger {
 
 @property (strong, nonatomic) UIView *playView;
 
+
+@property (strong, nonatomic) NSMutableArray<LRLVideoPlayerItem *> *playItems;
+
 @end
 
 @implementation LRLVideoPlayerView
@@ -167,11 +174,11 @@ typedef enum : NSUInteger {
     }
 }
 
-+(LRLVideoPlayerView *)avplayerViewWithVideoUrlStr:(NSString *)urlStr andInitialHeight:(float)height andSuperView:(UIView *)superView{
++(LRLVideoPlayerView *)avplayerViewWithPlayItems:(NSArray<LRLVideoPlayerItem *> *)playItems andInitialHeight:(float)height andSuperView:(UIView *)superView{
     static float videoHeight = 0.0;
     videoHeight = height;
     LRLVideoPlayerView * view = [[NSBundle mainBundle] loadNibNamed:@"LRLVideoPlayerView" owner:nil options:nil].lastObject;
-    view.videoUrlStr = urlStr;
+    view.playItems = [NSMutableArray arrayWithArray:playItems];
     view.autoPlay = YES;
     view.videoHeight = &videoHeight;
     view.playerSuperView = superView;
@@ -403,6 +410,9 @@ typedef enum : NSUInteger {
 - (IBAction)startPiP:(id)sender {
     [self.videoPlayer startPip];
 }
+- (IBAction)nextVideo:(id)sender {
+    [self.videoPlayer playNext];
+}
 
 #pragma mark - touch
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{   //触摸开始
@@ -579,9 +589,8 @@ typedef enum : NSUInteger {
     if (self.videoPlayer) {
         return;
     }
-    LRLVideoPlayerItem *item = [[LRLVideoPlayerItem alloc] init];
-    item.videoUrlStr = self.videoUrlStr;
-    self.videoPlayer = [[LRLVideoPlayer alloc] initWithDelegate:self playerType:LRLVideoPlayerType_AVPlayer playItem:item];
+    
+    self.videoPlayer = [[LRLVideoPlayer alloc] initWithDelegate:self playerType:LRLVideoPlayerType_AVPlayer playItem:self.playItems];
     self.videoPlayer.backPlayMode = YES;
     self.playView = self.videoPlayer.playView;
     [self insertSubview:self.playView atIndex:0];
@@ -608,16 +617,13 @@ typedef enum : NSUInteger {
 -(void)readyToPlay{
     _isPlaying = self.autoPlay;
     self.playOrPauseBtn.selected = self.autoPlay;
-    
-    self.duration = self.videoPlayer.duration;
     self.userInteractionEnabled = YES;
     //将总时间设置slider的最大value, 方便计算
-    self.videoSlider.maximumValue = self.self.duration;
     self.actIndicator.hidden = YES;
-
     [self endBuffer];
-    self.totalTimeLabel.text = [self.class calculateTimeWithSecond:self.duration];
-    _hiddenTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(controlViewHidden) userInfo:nil repeats:NO];
+    if (!_hiddenTimer) {
+        _hiddenTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(controlViewHidden) userInfo:nil repeats:NO];
+    }
 }
 
 //跳转到指定位置
@@ -764,18 +770,18 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark - LRLVideoPlayerDelegate
--(void)lrlVideoPlayer:(LRLVideoPlayer *)player event:(LRLVideoPlayerEvent)event errorInfo:(NSError *)errorInfo{
+-(void)lrlVideoPlayer:(LRLVideoPlayer *)player event:(LRLVideoPlayerEvent)event errorInfo:(NSError *)errorInfo atIndex:(NSInteger)index{
     switch (event) {
         case LRLVideoPlayerEvent_PrepareDone:{
-            if (_isFisrtConfig) {
+                self.playItemIndexLabel.text = [NSString stringWithFormat:@"第%ld集", index];
                 //self准备好播放
                 [self readyToPlay];
-                //avplayerView准备好播放
             }
-            _isFisrtConfig = NO;
-        }
             break;
         case LRLVideoPlayerEvent_GetVideoSize:{
+            if (!self.videoPlayer.videoSize.width || !self.videoPlayer.videoSize.height) {
+                return;
+            }
             if (!_isFullScreen) {
                 CGSize size = self.videoPlayer.videoSize;
                 static float staticHeight = 0;
@@ -801,10 +807,10 @@ typedef enum : NSUInteger {
         }
             break;
         case LRLVideoPlayerEvent_PlayEnd:{
-            [self seekToTheTimeValue:0.0];
-            [self.videoPlayer pause];
-            [self.playOrPauseBtn setBackgroundImage:[UIImage imageNamed:@"ad_play_f_p"] forState:UIControlStateNormal];
-            _isPlaying = NO;
+            if (index == (self.playItems.count - 1)) {
+                [self.playOrPauseBtn setBackgroundImage:[UIImage imageNamed:@"ad_play_f_p"] forState:UIControlStateNormal];
+                _isPlaying = NO;
+            }
         }
             break;
         case LRLVideoPlayerEvent_PlayError:{
@@ -816,8 +822,15 @@ typedef enum : NSUInteger {
     }
 }
 
--(void)lrlVideoPlayer:(LRLVideoPlayer *)player position:(float)position duration:(float)duration{
-    self.duration = duration;
+-(void)lrlVideoPlayer:(LRLVideoPlayer *)player position:(Float64)position cacheDuration:(float)cacheDuration duration:(float)duration atIndex:(NSInteger)index{
+    self.videoProgressView.progress = cacheDuration/self.duration;
+
+    if (duration != self.duration) {
+        self.duration = duration;
+        self.videoSlider.maximumValue = (float)self.duration;
+        self.totalTimeLabel.text = [self.class calculateTimeWithSecond:(float)self.duration];
+    }
+    
     NSInteger tempLength = self.totalTimeLabel.text.length;
     if (tempLength > 5) {
         self.timeLabel.text = @"00:00:00";
@@ -826,7 +839,7 @@ typedef enum : NSUInteger {
     }
     
     if (!self.sliderValueChanging) {
-        [self.videoSlider setValue:position animated:YES];
+        [self.videoSlider setValue:(float)position animated:YES];
     }
     NSString * tempTime = [self.class calculateTimeWithSecond:position];
     if (tempTime.length > 5) {
@@ -834,11 +847,6 @@ typedef enum : NSUInteger {
     }else{
         self.timeLabel.text = tempTime;
     }
-    
-}
-
--(void)lrlVideoPlayer:(LRLVideoPlayer *)player cacheDuration:(float)cacheDuration duration:(float)duration{
-    self.videoProgressView.progress = cacheDuration/self.duration;
 }
 
 #pragma mark - tool
