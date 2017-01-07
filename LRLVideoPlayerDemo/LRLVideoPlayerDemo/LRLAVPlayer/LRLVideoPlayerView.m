@@ -695,7 +695,6 @@ typedef enum : NSUInteger {
             [self toOrientation:UIInterfaceOrientationLandscapeLeft];
             break;
         case UIDeviceOrientationPortraitUpsideDown:
-            [self toOrientation:UIInterfaceOrientationPortraitUpsideDown];
             break;
         default:
             break;
