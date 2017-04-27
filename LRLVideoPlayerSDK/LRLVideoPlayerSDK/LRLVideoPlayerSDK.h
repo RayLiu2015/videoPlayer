@@ -7,5 +7,5 @@
 //
 
 #import "LRLVideoPlayer.h"
-#import "lrlvideoplayerItem.h"
+#import "LRLVideoPlayerItem.h"
 #import "LRLVideoPlayerDefine.h"

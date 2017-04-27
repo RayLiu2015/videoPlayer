@@ -29,7 +29,7 @@ const NSString *LRLVideoPlayerVersion = @"1.2";
     VPDLog(@"LRLVideoPlayer dealloc");
 }
 
--(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull LRLVideoPlayerItem *)items{
+-(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerDelegate>)delegate playerType:(LRLVideoPlayerType)type playItem:(nonnull NSArray<LRLVideoPlayerItem *> *)items{
     if (self = [super init]) {
         self.delegate = delegate;
         if (type == LRLVideoPlayerType_AVPlayer) {
