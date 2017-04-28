@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LRLVideoPlayerDefine.h"
 
-@class LRLVideoPlayerDrawView;
 @class LRLVideoPlayerItem;
 
 @protocol LRLVideoPlayerCallBackDelegate <NSObject>
@@ -42,7 +42,13 @@
  */
 @property (assign, nonatomic) BOOL backPlayMode;
 
--(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerCallBackDelegate>)delegate andPlayView:(nonnull LRLVideoPlayerDrawView *)playView playItem:(nonnull NSArray<LRLVideoPlayerItem *> *)items;
+@property (assign, nonatomic) NSUInteger currentIndex;
+
+@property (assign, nonatomic) LRLVideoPlayerType type;
+
+@property (strong, nonatomic) NSMutableArray<LRLVideoPlayerItem *> *_Nonnull playerItems;
+
+-(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerCallBackDelegate>)delegate andPlayView:(nonnull UIView *)playView playItem:(nonnull NSArray<LRLVideoPlayerItem *> *)items;
 
 -(void)prepare;
 

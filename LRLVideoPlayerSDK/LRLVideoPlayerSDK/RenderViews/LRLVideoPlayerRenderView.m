@@ -11,6 +11,10 @@
 
 @implementation LRLAVPlayerRenderView
 
+-(void)dealloc{
+    NSLog(@"123");
+}
+
 +(Class)layerClass{
     return [AVPlayerLayer class];
 }

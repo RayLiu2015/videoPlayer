@@ -31,6 +31,7 @@
 		FC0ED4B81DE975710083B8F1 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0ED49E1DE975710083B8F1 /* View+MASAdditions.m */; };
 		FC0ED4B91DE975710083B8F1 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0ED4A11DE975710083B8F1 /* ViewController+MASAdditions.m */; };
 		FCC3A13C1DEB4E9400BAACC9 /* LRLVideoPlayerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC3A13B1DEB4E9400BAACC9 /* LRLVideoPlayerSDK.framework */; };
+		FCF495121EB345D2000C7A21 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF495111EB345D2000C7A21 /* libxml2.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		FC0ED4A01DE975710083B8F1 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		FC0ED4A11DE975710083B8F1 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		FCC3A13B1DEB4E9400BAACC9 /* LRLVideoPlayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LRLVideoPlayerSDK.framework; path = "../../../../Library/Developer/Xcode/DerivedData/LRLVideoPlayerWorkSpace-cemluwgkswpwehgkndkrhfzpoixo/Build/Products/Debug-iphoneos/LRLVideoPlayerSDK.framework"; sourceTree = "<group>"; };
+		FCF495111EB345D2000C7A21 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF495121EB345D2000C7A21 /* libxml2.tbd in Frameworks */,
 				FCC3A13C1DEB4E9400BAACC9 /* LRLVideoPlayerSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +202,7 @@
 		FC0ED4BA1DE976D90083B8F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FCF495111EB345D2000C7A21 /* libxml2.tbd */,
 				FCC3A13B1DEB4E9400BAACC9 /* LRLVideoPlayerSDK.framework */,
 			);
 			name = Frameworks;

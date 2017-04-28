@@ -26,8 +26,6 @@
     BOOL _isPlaying;
 }
 
-@property (strong, nonatomic) NSMutableArray<LRLVideoPlayerItem *> *playerItems;
-
 @property (strong, nonatomic) NSMutableArray<AVPlayerItem *> *avPlayerItems;
 
 /**
@@ -58,6 +56,9 @@
 @synthesize duration = _duration;
 @synthesize position = _position;
 @synthesize cacheDuration = _cacheDuration;
+@synthesize currentIndex = _currentIndex;
+@synthesize playerItems = _playerItems;
+@synthesize type = _type;
 
 -(void)dealloc{
     VPDLog(@"LRLAVPlayer dealloc");
@@ -67,7 +68,7 @@
 }
 
 #pragma mark - LRLVideoPlayerProtocol
--(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerCallBackDelegate>)delegate andPlayView:(nonnull LRLVideoPlayerDrawView *)playView playItem:(nonnull NSArray<LRLVideoPlayerItem *> *)items{
+-(nonnull instancetype)initWithDelegate:(nullable id<LRLVideoPlayerCallBackDelegate>)delegate andPlayView:(nonnull UIView *)playView playItem:(nonnull NSArray<LRLVideoPlayerItem *> *)items{
     if (self = [super init]) {
         self.avplayerView = (LRLAVPlayerRenderView *)playView;
         self.delegate = delegate;
@@ -174,16 +175,17 @@
         self.avPlayerItems = nil;
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    if (_timerObserver) {
-        _timerObserver = nil;
-    }
     [(AVPlayerLayer *)self.avplayerView.layer setPlayer:nil];
     if (_avplayer) {
+        [_avplayer removeTimeObserver:self.timerObserver];
         [_avplayer pause];
+        [_avplayer removeAllItems];
+        [_avplayer replaceCurrentItemWithPlayerItem:nil];
         _avplayer = nil;
+        _timerObserver = nil;
     }
 }
--(Float64)duration{    
+-(Float64)duration{
     Float64 duration = CMTimeGetSeconds(self.avplayer.currentItem.duration);
     if (isnan(duration)) {
         return _duration;
@@ -272,7 +274,7 @@
     [self handleEvent:LRLVideoPlayerEvent_PlayEnd error:nil];
 }
 
--(NSInteger)currentIndex{
+-(NSUInteger)currentIndex{
     NSInteger index = [self.avPlayerItems indexOfObject:self.avplayer.currentItem];
     if (index >= self.playerItems.count) {
         index = 0;

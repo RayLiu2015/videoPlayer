@@ -8,17 +8,22 @@
 
 #import "LRLAVPlayer.h"
 #import "LRLVideoPlayer.h"
+#import "LRLScreenPlayer.h"
 #import "LRLVideoPlayerTool.h"
 #import "LRLVideoPlayerConfig.h"
 #import "LRLVideoPlayerRenderView.h"
 
 const NSString *LRLVideoPlayerVersion = @"1.2";
 
-@interface LRLVideoPlayer ()<LRLVideoPlayerCallBackDelegate>
+@interface LRLVideoPlayer ()<LRLVideoPlayerCallBackDelegate, LRLDLNADeviceSearchResultDelegate>
 
 @property (strong, nonatomic) id<LRLVideoPlayerProtocol> videoPlayer;
 
+@property (strong, nonatomic) id<LRLVideoPlayerProtocol> sleepVideoPlayer;
+
 @property (strong, nonatomic) UIView *playView;
+
+@property (strong, nonatomic) LRLScreenPlayerSearcher *searcher;
 
 @end
 
@@ -34,8 +39,10 @@ const NSString *LRLVideoPlayerVersion = @"1.2";
         self.delegate = delegate;
         if (type == LRLVideoPlayerType_AVPlayer) {
             self.playView = [[LRLAVPlayerRenderView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-            self.videoPlayer = [[LRLAVPlayer alloc] initWithDelegate:self andPlayView:(LRLVideoPlayerDrawView *)self.playView playItem:items];
+            self.videoPlayer = [[LRLAVPlayer alloc] initWithDelegate:self andPlayView:(UIView *)self.playView playItem:items];
         }
+        self.videoPlayer.type = type;
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     }
@@ -98,6 +105,37 @@ const NSString *LRLVideoPlayerVersion = @"1.2";
     self.videoPlayer = nil;
 }
 
+-(void)searchForDLNAScreenDevice{
+    [self.searcher stop];
+    self.searcher = [[LRLScreenPlayerSearcher alloc] initWithDelegate:self];
+}
+
+-(void)endSearch{
+    [self.searcher stop];
+    self.searcher = nil;
+}
+
+-(void)startScreenProjection:(LRLDLNADevice *)device{
+    if (self.videoPlayer.type != LRLVideoPlayerType_Screen) {
+        [self.videoPlayer pause];
+        self.sleepVideoPlayer = self.videoPlayer;
+        self.videoPlayer = [[LRLScreenPlayer alloc] initWithDelegate:self andPlayView:self.playView playItem:self.sleepVideoPlayer.playerItems];
+        self.videoPlayer.currentIndex = self.sleepVideoPlayer.currentIndex;
+        self.videoPlayer.type = LRLVideoPlayerType_Screen;
+        [self.videoPlayer prepare];
+    }
+}
+
+-(void)endScreenProjection{
+    if (self.videoPlayer.type == LRLVideoPlayerType_Screen) {
+        [self.videoPlayer releasePlayer];
+        self.videoPlayer = self.sleepVideoPlayer;
+        [self.videoPlayer play];
+    }
+}
+
+#pragma mark -------- <LRLVideoPlayerCallBackDelegate> --------
+
 -(void)lrlVideoPlayerCallBackevent:(LRLVideoPlayerEvent)event errorInfo:(nullable NSError *)errorInfo atIndex:(NSInteger)index{
     if ([self.delegate respondsToSelector:@selector(lrlVideoPlayer:event:errorInfo:atIndex:)]) {
         [self.delegate lrlVideoPlayer:self event:event errorInfo:errorInfo atIndex:index];
@@ -107,6 +145,19 @@ const NSString *LRLVideoPlayerVersion = @"1.2";
 -(void)lrlVideoPlayerCallBackPosition:(Float64)position cacheDuration:(Float64)cacheDuration duration:(Float64)duration atIndex:(NSInteger)index{
     if ([self.delegate respondsToSelector:@selector(lrlVideoPlayer:position:cacheDuration:duration:atIndex:)]) {
         [self.delegate lrlVideoPlayer:self position:position cacheDuration:cacheDuration duration:duration atIndex:index];
+    }
+}
+
+#pragma mark -------- <LRLDLNADeviceSearchResultDelegate> --------
+- (void)searchResultsWith:(LRLDLNADevice *)device{
+    if ([self.delegate respondsToSelector:@selector(lrlVideoPlayer:searchResultDLNADevice:)]) {
+        [self.delegate lrlVideoPlayer:self searchResultDLNADevice:device];
+    }
+}
+
+- (void)searchErrorWith:(NSError *)error{
+    if ([self.delegate respondsToSelector:@selector(lrlVideoPlayer:searchResultDLNAError:)]) {
+        [self.delegate lrlVideoPlayer:self searchResultDLNAError:error];
     }
 }
 

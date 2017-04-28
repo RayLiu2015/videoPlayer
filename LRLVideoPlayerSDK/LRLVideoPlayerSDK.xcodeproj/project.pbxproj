@@ -19,6 +19,26 @@
 		FC0ED44A1DE972100083B8F1 /* LRLVideoPlayerRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0ED4481DE972100083B8F1 /* LRLVideoPlayerRenderView.m */; };
 		FC0ED4C61DE97CBA0083B8F1 /* LRLVideoPlayerItem.h in Headers */ = {isa = PBXBuildFile; fileRef = FC0ED4C41DE97CBA0083B8F1 /* LRLVideoPlayerItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC0ED4C71DE97CBA0083B8F1 /* LRLVideoPlayerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0ED4C51DE97CBA0083B8F1 /* LRLVideoPlayerItem.m */; };
+		FCF494F61EB310CF000C7A21 /* CLUPnP.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF494E41EB310CF000C7A21 /* CLUPnP.h */; };
+		FCF494F71EB310CF000C7A21 /* CLUPnPAction.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF494E51EB310CF000C7A21 /* CLUPnPAction.h */; };
+		FCF494F81EB310CF000C7A21 /* CLUPnPAction.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF494E61EB310CF000C7A21 /* CLUPnPAction.m */; };
+		FCF494F91EB310CF000C7A21 /* CLUPnPAVPositionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF494E71EB310CF000C7A21 /* CLUPnPAVPositionInfo.h */; };
+		FCF494FA1EB310CF000C7A21 /* CLUPnPAVPositionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF494E81EB310CF000C7A21 /* CLUPnPAVPositionInfo.m */; };
+		FCF494FB1EB310CF000C7A21 /* CLUPnPDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF494E91EB310CF000C7A21 /* CLUPnPDevice.h */; };
+		FCF494FC1EB310CF000C7A21 /* CLUPnPDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF494EA1EB310CF000C7A21 /* CLUPnPDevice.m */; };
+		FCF494FD1EB310CF000C7A21 /* CLUPnPModel.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF494EB1EB310CF000C7A21 /* CLUPnPModel.h */; };
+		FCF494FE1EB310CF000C7A21 /* CLUPnPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF494EC1EB310CF000C7A21 /* CLUPnPModel.m */; };
+		FCF494FF1EB310CF000C7A21 /* CLUPnPRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF494ED1EB310CF000C7A21 /* CLUPnPRenderer.h */; };
+		FCF495001EB310CF000C7A21 /* CLUPnPRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF494EE1EB310CF000C7A21 /* CLUPnPRenderer.m */; };
+		FCF495011EB310CF000C7A21 /* CLUPnPResponseDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF494EF1EB310CF000C7A21 /* CLUPnPResponseDelegate.h */; };
+		FCF495021EB310CF000C7A21 /* GCDAsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF494F11EB310CF000C7A21 /* GCDAsyncUdpSocket.h */; };
+		FCF495031EB310CF000C7A21 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF494F21EB310CF000C7A21 /* GCDAsyncUdpSocket.m */; };
+		FCF495041EB310CF000C7A21 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF494F41EB310CF000C7A21 /* GDataXMLNode.h */; };
+		FCF495051EB310CF000C7A21 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF494F51EB310CF000C7A21 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FCF4950B1EB31487000C7A21 /* LRLScreenPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF495091EB31487000C7A21 /* LRLScreenPlayer.h */; };
+		FCF4950C1EB31487000C7A21 /* LRLScreenPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF4950A1EB31487000C7A21 /* LRLScreenPlayer.m */; };
+		FCF4950F1EB317F6000C7A21 /* LRLDLNADevice.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF4950D1EB317F6000C7A21 /* LRLDLNADevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FCF495101EB317F6000C7A21 /* LRLDLNADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF4950E1EB317F6000C7A21 /* LRLDLNADevice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +57,27 @@
 		FC0ED4481DE972100083B8F1 /* LRLVideoPlayerRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLVideoPlayerRenderView.m; sourceTree = "<group>"; };
 		FC0ED4C41DE97CBA0083B8F1 /* LRLVideoPlayerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLVideoPlayerItem.h; sourceTree = "<group>"; };
 		FC0ED4C51DE97CBA0083B8F1 /* LRLVideoPlayerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLVideoPlayerItem.m; sourceTree = "<group>"; };
+		FCF494E41EB310CF000C7A21 /* CLUPnP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnP.h; sourceTree = "<group>"; };
+		FCF494E51EB310CF000C7A21 /* CLUPnPAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPAction.h; sourceTree = "<group>"; };
+		FCF494E61EB310CF000C7A21 /* CLUPnPAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPAction.m; sourceTree = "<group>"; };
+		FCF494E71EB310CF000C7A21 /* CLUPnPAVPositionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPAVPositionInfo.h; sourceTree = "<group>"; };
+		FCF494E81EB310CF000C7A21 /* CLUPnPAVPositionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPAVPositionInfo.m; sourceTree = "<group>"; };
+		FCF494E91EB310CF000C7A21 /* CLUPnPDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPDevice.h; sourceTree = "<group>"; };
+		FCF494EA1EB310CF000C7A21 /* CLUPnPDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPDevice.m; sourceTree = "<group>"; };
+		FCF494EB1EB310CF000C7A21 /* CLUPnPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPModel.h; sourceTree = "<group>"; };
+		FCF494EC1EB310CF000C7A21 /* CLUPnPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPModel.m; sourceTree = "<group>"; };
+		FCF494ED1EB310CF000C7A21 /* CLUPnPRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPRenderer.h; sourceTree = "<group>"; };
+		FCF494EE1EB310CF000C7A21 /* CLUPnPRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUPnPRenderer.m; sourceTree = "<group>"; };
+		FCF494EF1EB310CF000C7A21 /* CLUPnPResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUPnPResponseDelegate.h; sourceTree = "<group>"; };
+		FCF494F11EB310CF000C7A21 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		FCF494F21EB310CF000C7A21 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		FCF494F41EB310CF000C7A21 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		FCF494F51EB310CF000C7A21 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		FCF495071EB31105000C7A21 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		FCF495091EB31487000C7A21 /* LRLScreenPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLScreenPlayer.h; sourceTree = "<group>"; };
+		FCF4950A1EB31487000C7A21 /* LRLScreenPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLScreenPlayer.m; sourceTree = "<group>"; };
+		FCF4950D1EB317F6000C7A21 /* LRLDLNADevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLDLNADevice.h; sourceTree = "<group>"; };
+		FCF4950E1EB317F6000C7A21 /* LRLDLNADevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLDLNADevice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +96,7 @@
 			children = (
 				FC0ED41F1DE971340083B8F1 /* LRLVideoPlayerSDK */,
 				FC0ED41E1DE971340083B8F1 /* Products */,
+				FCF495061EB31105000C7A21 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +130,8 @@
 				FC0ED42C1DE971600083B8F1 /* LRLVideoPlayer.m */,
 				FC0ED42D1DE971600083B8F1 /* LRLVideoPlayerConfig.h */,
 				FC0ED42E1DE971600083B8F1 /* LRLVideoPlayerDefine.h */,
+				FCF495091EB31487000C7A21 /* LRLScreenPlayer.h */,
+				FCF4950A1EB31487000C7A21 /* LRLScreenPlayer.m */,
 			);
 			path = LRLVideoPlayer;
 			sourceTree = "<group>";
@@ -95,6 +139,7 @@
 		FC0ED4411DE971900083B8F1 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				FCF494E31EB310CF000C7A21 /* CLUPnP */,
 				FC0ED4421DE971A10083B8F1 /* LRLVideoPlayerTool.h */,
 				FC0ED4431DE971A10083B8F1 /* LRLVideoPlayerTool.m */,
 			);
@@ -115,8 +160,57 @@
 			children = (
 				FC0ED4C41DE97CBA0083B8F1 /* LRLVideoPlayerItem.h */,
 				FC0ED4C51DE97CBA0083B8F1 /* LRLVideoPlayerItem.m */,
+				FCF4950D1EB317F6000C7A21 /* LRLDLNADevice.h */,
+				FCF4950E1EB317F6000C7A21 /* LRLDLNADevice.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		FCF494E31EB310CF000C7A21 /* CLUPnP */ = {
+			isa = PBXGroup;
+			children = (
+				FCF494E41EB310CF000C7A21 /* CLUPnP.h */,
+				FCF494E51EB310CF000C7A21 /* CLUPnPAction.h */,
+				FCF494E61EB310CF000C7A21 /* CLUPnPAction.m */,
+				FCF494E71EB310CF000C7A21 /* CLUPnPAVPositionInfo.h */,
+				FCF494E81EB310CF000C7A21 /* CLUPnPAVPositionInfo.m */,
+				FCF494E91EB310CF000C7A21 /* CLUPnPDevice.h */,
+				FCF494EA1EB310CF000C7A21 /* CLUPnPDevice.m */,
+				FCF494EB1EB310CF000C7A21 /* CLUPnPModel.h */,
+				FCF494EC1EB310CF000C7A21 /* CLUPnPModel.m */,
+				FCF494ED1EB310CF000C7A21 /* CLUPnPRenderer.h */,
+				FCF494EE1EB310CF000C7A21 /* CLUPnPRenderer.m */,
+				FCF494EF1EB310CF000C7A21 /* CLUPnPResponseDelegate.h */,
+				FCF494F01EB310CF000C7A21 /* CocoaAsyncSocket */,
+				FCF494F31EB310CF000C7A21 /* GData */,
+			);
+			path = CLUPnP;
+			sourceTree = "<group>";
+		};
+		FCF494F01EB310CF000C7A21 /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				FCF494F11EB310CF000C7A21 /* GCDAsyncUdpSocket.h */,
+				FCF494F21EB310CF000C7A21 /* GCDAsyncUdpSocket.m */,
+			);
+			path = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		FCF494F31EB310CF000C7A21 /* GData */ = {
+			isa = PBXGroup;
+			children = (
+				FCF494F41EB310CF000C7A21 /* GDataXMLNode.h */,
+				FCF494F51EB310CF000C7A21 /* GDataXMLNode.m */,
+			);
+			path = GData;
+			sourceTree = "<group>";
+		};
+		FCF495061EB31105000C7A21 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCF495071EB31105000C7A21 /* libxml2.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,13 +220,24 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF494F61EB310CF000C7A21 /* CLUPnP.h in Headers */,
+				FCF495021EB310CF000C7A21 /* GCDAsyncUdpSocket.h in Headers */,
+				FCF494F71EB310CF000C7A21 /* CLUPnPAction.h in Headers */,
+				FCF4950F1EB317F6000C7A21 /* LRLDLNADevice.h in Headers */,
 				FC0ED4391DE971600083B8F1 /* LRLVideoPlayerConfig.h in Headers */,
+				FCF4950B1EB31487000C7A21 /* LRLScreenPlayer.h in Headers */,
 				FC0ED43A1DE971600083B8F1 /* LRLVideoPlayerDefine.h in Headers */,
 				FC0ED4C61DE97CBA0083B8F1 /* LRLVideoPlayerItem.h in Headers */,
 				FC0ED4371DE971600083B8F1 /* LRLVideoPlayer.h in Headers */,
+				FCF494FD1EB310CF000C7A21 /* CLUPnPModel.h in Headers */,
 				FC0ED4441DE971A10083B8F1 /* LRLVideoPlayerTool.h in Headers */,
+				FCF495011EB310CF000C7A21 /* CLUPnPResponseDelegate.h in Headers */,
 				FC0ED4221DE971340083B8F1 /* LRLVideoPlayerSDK.h in Headers */,
+				FCF494F91EB310CF000C7A21 /* CLUPnPAVPositionInfo.h in Headers */,
+				FCF495041EB310CF000C7A21 /* GDataXMLNode.h in Headers */,
 				FC0ED4351DE971600083B8F1 /* LRLAVPlayer.h in Headers */,
+				FCF494FF1EB310CF000C7A21 /* CLUPnPRenderer.h in Headers */,
+				FCF494FB1EB310CF000C7A21 /* CLUPnPDevice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,11 +310,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCF4950C1EB31487000C7A21 /* LRLScreenPlayer.m in Sources */,
 				FC0ED4C71DE97CBA0083B8F1 /* LRLVideoPlayerItem.m in Sources */,
+				FCF495031EB310CF000C7A21 /* GCDAsyncUdpSocket.m in Sources */,
+				FCF494FA1EB310CF000C7A21 /* CLUPnPAVPositionInfo.m in Sources */,
 				FC0ED4451DE971A10083B8F1 /* LRLVideoPlayerTool.m in Sources */,
+				FCF494FE1EB310CF000C7A21 /* CLUPnPModel.m in Sources */,
+				FCF495051EB310CF000C7A21 /* GDataXMLNode.m in Sources */,
+				FCF494FC1EB310CF000C7A21 /* CLUPnPDevice.m in Sources */,
 				FC0ED4361DE971600083B8F1 /* LRLAVPlayer.m in Sources */,
 				FC0ED44A1DE972100083B8F1 /* LRLVideoPlayerRenderView.m in Sources */,
 				FC0ED4381DE971600083B8F1 /* LRLVideoPlayer.m in Sources */,
+				FCF495001EB310CF000C7A21 /* CLUPnPRenderer.m in Sources */,
+				FCF494F81EB310CF000C7A21 /* CLUPnPAction.m in Sources */,
+				FCF495101EB317F6000C7A21 /* LRLDLNADevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +435,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = LRLVideoPlayerSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -341,6 +456,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = LRLVideoPlayerSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

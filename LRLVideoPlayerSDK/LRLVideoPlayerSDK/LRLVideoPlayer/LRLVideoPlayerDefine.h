@@ -9,10 +9,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class LRLDLNADevice;
 @class LRLVideoPlayer;
 
 typedef enum : NSUInteger {
-    LRLVideoPlayerType_AVPlayer
+    LRLVideoPlayerType_AVPlayer,
+    LRLVideoPlayerType_Screen
 } LRLVideoPlayerType;
 
 
@@ -59,5 +61,11 @@ typedef enum : NSUInteger {
  @param index 当前 播放的视频 下标, 从0开始
  */
 -(void)lrlVideoPlayer:(LRLVideoPlayer *)player position:(Float64)position cacheDuration:(float)cacheDuration duration:(float)duration  atIndex:(NSInteger)index;
+
+
+-(void)lrlVideoPlayer:(LRLVideoPlayer *)player searchResultDLNADevice:(LRLDLNADevice *)device;
+
+-(void)lrlVideoPlayer:(LRLVideoPlayer *)player searchResultDLNAError:(NSError *)error;
+
 
 @end

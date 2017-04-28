@@ -6,6 +6,7 @@
 //  Copyright © 2016年 codeWorm. All rights reserved.
 //
 
+#import "LRLDLNADevice.h"
 #import "LRLVideoPlayerItem.h"
 #import "LRLVideoPlayerDefine.h"
 
@@ -107,5 +108,14 @@ extern const NSString *_Nonnull LRLVideoPlayerVersion;
  @b 不在使用播放器时需调用此方法释放播放器
  */
 -(void)releasePlayer;
+
+
+-(void)searchForDLNAScreenDevice;
+
+-(void)endSearch;
+
+-(void)startScreenProjection:(LRLDLNADevice * _Nonnull)device;
+
+-(void)endScreenProjection;
 
 @end
